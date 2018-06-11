@@ -37,10 +37,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>Today</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -49,6 +45,14 @@
         <type>Default</type>
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Information</fullName>
+        <fields>Subject</fields>
+        <fields>WhatId</fields>
+        <fields>OwnerId</fields>
+        <fields>StartDateTime</fields>
+        <label>点検予実</label>
+    </compactLayouts>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>ActivityDate</fullName>

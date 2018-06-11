@@ -122,6 +122,9 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static Einstein_PredictionResult predictImageClassification(String modelId, String base64) {
+        System.debug('@@@ predictImageClassification');
+        System.debug('*** modelId ' + modelId);
+        System.debug('*** base64 ' + base64);
         setType('');
         service.setType(Einstein_PredictionService.Types.IMAGE);
         Einstein_PredictionResult result = service.predictImageBase64(modelId, base64, 0, '');
@@ -133,12 +136,18 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static Einstein_PredictionResult predictImageClassificationURL(String modelId, String url) {
+        System.debug('@@@ predictImageClassificationURL');
+        System.debug('*** modelId ' + modelId);
+        System.debug('*** url ' + url);
         setType('');
         service.setType(Einstein_PredictionService.Types.IMAGE);
         Einstein_PredictionResult result = service.predictImageUrl(modelId, url, 0, '');
         if (service.httpStatusCode>200) {
             throw new AuraHandledException(service.httpErrorMessage);
         }
+        System.debug('*** result1 ' + result.probabilities[0]);
+        System.debug('*** result2 ' + result.probabilities[1]);
+        System.debug('*** result3 ' + result.probabilities[2]);
         return result;
     }
 
