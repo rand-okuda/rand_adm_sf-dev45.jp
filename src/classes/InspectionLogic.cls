@@ -188,7 +188,9 @@ public class InspectionLogic {
         Event ev = new Event();
         ev.Subject = ip.AccountName__c + ' ' + ip.ModelName__c + ' ' + ip.WorkerName__c;
         ev.StartDateTime = ip.InspectionDateTime__c;
-        ev.EndDateTime = ip.InspectionDateTime__c.addHours(2);
+        Decimal EndDateTime = ip.WorkingHours__c;
+        System.debug('*** EndDateTime ' + EndDateTime);
+        ev.EndDateTime = ip.InspectionDateTime__c.addHours(Integer.valueOf(EndDateTime));
         ev.OwnerId = ip.Worker__c;
         ev.WhatId = ip.Id;
         ev.AutoCreateByTrigger__c = true;
