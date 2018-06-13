@@ -2,7 +2,7 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <defaultLandingTab>standard-home</defaultLandingTab>
     <formFactors>Large</formFactors>
-    <label>モバイルQR　機器点検</label>
+    <label>QR　機器点検</label>
     <logo>Logo/RAND.jpg</logo>
     <tab>standard-File</tab>
     <tab>standard-Account</tab>

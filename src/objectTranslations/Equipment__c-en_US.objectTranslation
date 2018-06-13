@@ -14,10 +14,6 @@
         <relationshipLabel><!-- 点検施設 --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- 外観イメージ --></label>
-        <name>ExteriorImage__c</name>
-    </fields>
-    <fields>
         <label><!-- 点検期限超過 --></label>
         <name>InspectionDueDateExcess__c</name>
     </fields>
@@ -33,10 +29,6 @@
     <fields>
         <label><!-- 次回点検期限 --></label>
         <name>NextInspectionDueDate__c</name>
-    </fields>
-    <fields>
-        <label><!-- 施設QRコード --></label>
-        <name>QRCode__c</name>
     </fields>
     <layouts>
         <layout>機器 Layout</layout>

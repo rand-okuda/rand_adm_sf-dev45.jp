@@ -6,6 +6,7 @@
     <formFactors>Large</formFactors>
     <label>Einstein Platform</label>
     <navType>Standard</navType>
+    <tab>Tab</tab>
     <tab>Playground</tab>
     <tab>Einstein_Usage</tab>
     <tab>Language_Model_Builder</tab>

@@ -1020,11 +1020,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Equipment__c.ExteriorImage__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Equipment__c.InspectionDueDateExcess__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1036,11 +1031,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Equipment__c.NextInspectionDueDate__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Equipment__c.QRCode__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1361,11 +1351,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Model__c.CheckSpan__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Model__c.ExteriorImage__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -2119,6 +2104,10 @@
     <tabVisibilities>
         <tab>Playground</tab>
         <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Tab</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Account</tab>

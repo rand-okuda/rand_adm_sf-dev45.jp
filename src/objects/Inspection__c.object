@@ -710,12 +710,10 @@ AND(
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>EquipmentNumber__c</searchFilterFields>
-        <searchResultsAdditionalFields>ModelName__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Equipment__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>AccountName__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>InspectionDateTime__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>WorkerName__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>InspectionCompleted__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>

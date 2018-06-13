@@ -33,12 +33,7 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>追加情報</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ExteriorImage__c</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
@@ -90,8 +85,8 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>FeedItem.TextPost</actionName>
-            <actionType>QuickAction</actionType>
+            <actionName>Edit</actionName>
+            <actionType>StandardButton</actionType>
             <sortOrder>0</sortOrder>
         </platformActionListItems>
     </platformActionList>
@@ -102,8 +97,6 @@
     </quickActionList>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>QRCode__c</fields>
-        <fields>ExteriorImage__c</fields>
         <fields>Account__c</fields>
         <fields>LastInspectionDateTime__c</fields>
         <fields>NextInspectionDueDate__c</fields>
@@ -116,7 +109,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h7F000000Yt7n</masterLabel>
+        <masterLabel>00h7F0000085DYX</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

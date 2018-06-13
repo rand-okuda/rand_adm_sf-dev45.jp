@@ -61,11 +61,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>ExteriorImage__c</field>
-            <table>Model__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>CheckSpan__c</field>
             <table>Model__c</table>
         </columns>
@@ -105,11 +100,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>LastActivityDate</field>
-            <table>Model__c.Equipments__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>QRCode__c</field>
             <table>Model__c.Equipments__r</table>
         </columns>
         <columns>

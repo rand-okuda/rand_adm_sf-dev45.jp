@@ -104,8 +104,6 @@
     </relatedContent>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>QRCode__c</fields>
-        <fields>ExteriorImage__c</fields>
         <fields>Model__c</fields>
         <fields>LastInspectionDateTime__c</fields>
         <fields>NextInspectionDueDate__c</fields>
