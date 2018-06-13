@@ -1035,6 +1035,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Equipment__c.WorkingHours__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Event.AutoCreateByTrigger__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1216,6 +1221,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Inspection__c.Worker__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Inspection__c.WorkingHours__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1743,7 +1753,7 @@
         <layout>EmailMessage-Email Message Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Equipment__c-機器 Layout</layout>
+        <layout>Equipment__c-点検施設 Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Event-Event Layout</layout>

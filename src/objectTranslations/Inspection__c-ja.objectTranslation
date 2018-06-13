@@ -124,6 +124,10 @@
         <name>Worker__c</name>
         <relationshipLabel><!-- 点検予実 (点検者) --></relationshipLabel>
     </fields>
+    <fields>
+        <label><!-- ￥￥_点検時間 --></label>
+        <name>WorkingHours__c</name>
+    </fields>
     <layouts>
         <layout>点検エアーレイアウト</layout>
         <sections>

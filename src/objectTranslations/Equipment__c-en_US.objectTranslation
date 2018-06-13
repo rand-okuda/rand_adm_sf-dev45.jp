@@ -30,8 +30,12 @@
         <label><!-- 次回点検期限 --></label>
         <name>NextInspectionDueDate__c</name>
     </fields>
+    <fields>
+        <label><!-- 点検時間 --></label>
+        <name>WorkingHours__c</name>
+    </fields>
     <layouts>
-        <layout>機器 Layout</layout>
+        <layout>点検施設 Layout</layout>
         <sections>
             <label><!-- カスタムリンク --></label>
             <section>カスタムリンク</section>

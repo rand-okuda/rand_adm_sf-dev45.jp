@@ -421,6 +421,19 @@ AND(
         <trackHistory>true</trackHistory>
         <type>Lookup</type>
     </fields>
+    <fields>
+        <fullName>WorkingHours__c</fullName>
+        <externalId>false</externalId>
+        <formula>Equipment__r.WorkingHours__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>￥￥_点検時間</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <label>点検予実</label>
     <listViews>
         <fullName>Air</fullName>
