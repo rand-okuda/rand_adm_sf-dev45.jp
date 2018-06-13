@@ -4,7 +4,7 @@ trigger ContentVersionTrigger on ContentVersion (after insert, after update) {
         System.debug('%%%ContentVersionTrigger isAfter isInsert');
         List<ContentVersion> contentVersionList = new List<ContentVersion>();
         for(ContentVersion cv : Trigger.new){
-            if(cv.Origin == 'C' && cv.PublishStatus == 'R'){
+            if(cv.PathOnClient != '/null.png' && cv.Origin == 'C' && cv.PublishStatus == 'R'){
                 contentVersionList.add(cv);
             }
         }
