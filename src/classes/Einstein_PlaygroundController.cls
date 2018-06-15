@@ -28,6 +28,7 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static String getModelMetrics(string modelId, string dataType){
+        System.debug('@@@ getModelMetrics()');
         setType(dataType);
         String metrics = service.getModelMetrics(modelId);
         if (service.httpStatusCode>200) {
@@ -38,6 +39,7 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static String getLearningCurves(string modelId, string dataType){
+        System.debug('@@@ getLearningCurves()');
         setType(dataType);
         String curves = service.getModelLearningCurve(modelId);
         if (service.httpStatusCode>200) {
@@ -48,6 +50,7 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static List<Einstein_ApiUsage> getUsage() {
+        System.debug('@@@ getUsage()');
         setType('image'); //default
         List<Einstein_ApiUsage> usage = service.getApiUsage();
         if (service.httpStatusCode>200) {
@@ -58,6 +61,7 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static void createDatasetFromUrl(String url, String dataType) {
+        System.debug('@@@ createDatasetFromUrl()');
         setType(dataType);
         service.createDatasetFromUrlAsync(url);
         if (service.httpStatusCode>200) {
@@ -67,6 +71,8 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static List<Einstein_Dataset> getDatasets(String dataType) {
+        System.debug('@@@ getDatasets()');
+        System.debug('*** dataType ' + dataType);
         setType(dataType);
         List<Einstein_Dataset> datasets = service.getDatasets();
         List<Einstein_Dataset> datasetsReturn = new List<Einstein_Dataset>();
@@ -78,21 +84,36 @@ public class Einstein_PlaygroundController {
         if (service.httpStatusCode>200) {
             throw new AuraHandledException(service.httpErrorMessage);
         }
+        System.debug('*** datasetsReturn ' + datasetsReturn);
+        for ( Integer i=0; i<datasetsReturn.size(); i++ ){
+            System.debug('*** datasetsReturn.Id ' + datasetsReturn[i].Id);
+            System.debug('*** datasetsReturn.Id ' + datasetsReturn[i].Name);
+        }
         return datasetsReturn;
     }
 
     @AuraEnabled
     public static List<Einstein_Model> getModels(Long datasetId, String dataType) {
+        System.debug('@@@ getModels()');
+        System.debug('*** datasetId ' + datasetId);
+        System.debug('*** dataType ' + dataType);
         setType(dataType);
         Einstein_Model[] models = service.getModels(datasetId);
         if (service.httpStatusCode>200) {
             throw new AuraHandledException(service.httpErrorMessage);
+        }
+        System.debug('*** models ' + models);
+        for ( Integer i=0; i<models.size(); i++ ){
+            System.debug('*** models.modelId ' + models[i].modelId);
+            System.debug('*** models.name ' + models[i].name);
+            System.debug('*** models.modelType ' + models[i].modelType);
         }
         return models;
     }
 
     @AuraEnabled
     public static String trainDataset(Decimal datasetId, String modelName, String dataType) {
+        System.debug('@@@ trainDataset()');
         setType(dataType);
         Einstein_Model model = service.trainDataset(datasetId.longValue(), modelName, 0, 0, null);
         if (service.httpStatusCode>200) {
@@ -103,6 +124,7 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static String retrainDataset(String modelId, String dataType) {
+        System.debug('@@@ retrainDataset()');
         setType(dataType);
         Einstein_Model model = service.retrainDataset(modelId, 0, 0, null);
         if (service.httpStatusCode>200) {
@@ -113,6 +135,7 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static void deleteDataset(Long datasetId, String dataType) {
+        System.debug('@@@ deleteDataset()');
         setType(dataType);
         service.deleteDataset(datasetId);
         if (service.httpStatusCode>200) {
@@ -131,6 +154,11 @@ public class Einstein_PlaygroundController {
         if (service.httpStatusCode>200) {
             throw new AuraHandledException(service.httpErrorMessage);
         }
+        System.debug('*** result ' + result);
+        for ( Integer i=0; i<result.probabilities.size(); i++ ){
+            System.debug('*** result.probabilities ' + result.probabilities[i].label);
+            System.debug('*** result.probabilities ' + result.probabilities[i].probability);            
+        }
         return result;
     }
 
@@ -145,30 +173,48 @@ public class Einstein_PlaygroundController {
         if (service.httpStatusCode>200) {
             throw new AuraHandledException(service.httpErrorMessage);
         }
-        System.debug('*** result1 ' + result.probabilities[0]);
-        System.debug('*** result2 ' + result.probabilities[1]);
-        System.debug('*** result3 ' + result.probabilities[2]);
+        System.debug('*** result ' + result);
+        for ( Integer i=0; i<result.probabilities.size(); i++ ){
+            System.debug('*** result.probabilities ' + result.probabilities[i].label);
+            System.debug('*** result.probabilities ' + result.probabilities[i].probability);            
+        }
         return result;
     }
 
     @AuraEnabled
     public static Einstein_PredictionResult predictImageDetection(String modelId, String base64) {
+        System.debug('@@@ predictImageDetection()');
+        System.debug('*** modelId ' + modelId);
+        System.debug('*** base64 ' + base64);
         setType('');
         service.setType(Einstein_PredictionService.Types.IMAGE_DETECTION);
         Einstein_PredictionResult result = service.detectImageBase64(modelId, base64, 0, '');
         if (service.httpStatusCode>200) {
             throw new AuraHandledException(service.httpErrorMessage);
         }
+        System.debug('*** result ' + result);
+        for ( Integer i=0; i<result.probabilities.size(); i++ ){
+            System.debug('*** result.probabilities ' + result.probabilities[i].label);
+            System.debug('*** result.probabilities ' + result.probabilities[i].probability);            
+        }
         return result;
     }
 
     @AuraEnabled
     public static Einstein_PredictionResult predictImageDetectionURL(String modelId, String url) {
+        System.debug('@@@ predictImageDetectionURL()');
+        System.debug('*** modelId ' + modelId);
+        System.debug('*** url ' + url);
         setType('');
         service.setType(Einstein_PredictionService.Types.IMAGE_DETECTION);
         Einstein_PredictionResult result = service.detectImageUrl(modelId, url, 0, '');
         if (service.httpStatusCode>200) {
             throw new AuraHandledException(service.httpErrorMessage);
+        }
+        System.debug('*** result ' + result);
+        for ( Integer i=0; i<result.probabilities.size(); i++ ){
+            System.debug('*** result.probabilities ' + result.probabilities[i].label);
+            System.debug('*** result.probabilities ' + result.probabilities[i].probability);            
         }
         return result;
     }
@@ -177,6 +223,7 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static Einstein_PredictionResult predictIntent(String modelId, String phrase) {
+        System.debug('@@@ predictIntent()');
         setType('');
         service.setType(Einstein_PredictionService.Types.INTENT);
         Einstein_PredictionResult result = service.predictIntent(modelId, phrase, 0, '');
@@ -188,6 +235,7 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static Einstein_PredictionResult predictSentiment(String modelId, String phrase) {
+        System.debug('@@@ predictSentiment()');
         setType('');
         service.setType(Einstein_PredictionService.Types.SENTIMENT);
         Einstein_PredictionResult result = service.predictSentiment(modelId, phrase, 0, '');
@@ -199,6 +247,7 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static Map<String, Boolean> validateEinsteinPlatformSetup() {
+        System.debug('@@@ validateEinsteinPlatformSetup()');
         Map<String, Boolean> mapSettings = new Map<String, Boolean>();
         Einstein_Settings__c settings = Einstein_Settings__c.getOrgDefaults();
         if (settings.Einstein_EMail__c == null) {
@@ -224,6 +273,7 @@ public class Einstein_PlaygroundController {
     // stuff related to dataset generation
     @AuraEnabled
 	public static string getObjectOptions(){
+        System.debug('@@@ getObjectOptions()');
 
 		Map<String, Schema.SObjectType> objects = Schema.getGlobalDescribe();
 
@@ -253,6 +303,7 @@ public class Einstein_PlaygroundController {
     /*for a given object, return the fields that are sources of text (string, textarea) or labels (picklist, boolean)*/
 	@AuraEnabled
 	public static string getObjectFields(string objectName, string sourceOrLabel){
+        System.debug('@@@ getObjectFields()');
 		list<string> temp = new list<string>();
 		temp.add(objectName);
 
@@ -290,6 +341,7 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
 	public static ContentVersion saveFileToFiles(string obj, string src, string classify){
+        System.debug('@@@ saveFileToFiles()');
 
 		ContentVersion CV = new ContentVersion();
 		CV.VersionData = blob.valueof(makeCSV(obj, src, classify));
@@ -305,6 +357,7 @@ public class Einstein_PlaygroundController {
 
     @AuraEnabled
     public static ContentDistribution writeCD(id contentDocumentId, string name){
+        System.debug('@@@ writeCD()');
 
         ContentVersion CV = [select id from ContentVersion where ContentDocumentId =: contentDocumentId and isLatest = true];
 		ContentDistribution CD = new ContentDistribution();
@@ -332,6 +385,7 @@ public class Einstein_PlaygroundController {
 	}
 
 	public static string makeCSV (string obj, string src, string classify){
+        System.debug('@@@ makeCSV()');
 		string query = 'select ' +src+ ', ' +classify+ ' from ' +obj+ ' where ' + classify + '!= null limit 50000';
 
 		list<sobject> data = database.query(query);
@@ -359,6 +413,7 @@ public class Einstein_PlaygroundController {
     @future
     // expires publicly shared files that have already been accessed.  @future to avoid impacting users with DML stuff
     public static void handleCDV (list<ID> CDIDs){
+        System.debug('@@@ handleCDV()');
         list<ContentDistribution> CDs = [select name, ExpiryDate from ContentDistribution where id in: CDIDs];
         for (ContentDistribution CD:CDs){
             if (CD.Name.startsWith(CD_TEMP_PREFIX)){
