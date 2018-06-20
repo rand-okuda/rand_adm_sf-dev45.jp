@@ -86,6 +86,10 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>ContentDocumentLink_Logic</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>ContentVersionLogic</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -103,6 +107,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Einstein_Example</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Einstein_Helper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -1861,6 +1869,9 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>User-User Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>UserAlt-ユーザプロファイルレイアウト</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>UserProvAccount-User Provisioning Account Layout</layout>
