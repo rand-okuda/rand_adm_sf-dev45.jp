@@ -1202,6 +1202,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Inspection__c.OUINConfirm__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Inspection__c.PhoneReport__c</field>
         <readable>false</readable>
