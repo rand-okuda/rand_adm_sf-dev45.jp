@@ -52,6 +52,10 @@
                 <behavior>Edit</behavior>
                 <field>PhoneReport__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OUINConfirm__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>

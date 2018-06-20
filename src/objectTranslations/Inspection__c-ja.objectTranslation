@@ -99,6 +99,22 @@
         <name>ModelName__c</name>
     </fields>
     <fields>
+        <label><!-- 押印確認 --></label>
+        <name>OUINConfirm__c</name>
+        <picklistValues>
+            <masterLabel>押印済</masterLabel>
+            <translation><!-- 押印済 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>押印漏</masterLabel>
+            <translation><!-- 押印漏 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>未確認</masterLabel>
+            <translation><!-- 未確認 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- 電話報告有 --></label>
         <name>PhoneReport__c</name>
         <relationshipLabel><!-- 点検予実 (電話報告有) --></relationshipLabel>

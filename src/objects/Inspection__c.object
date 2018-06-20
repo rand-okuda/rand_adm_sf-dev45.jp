@@ -359,6 +359,33 @@ AND(
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>OUINConfirm__c</fullName>
+        <externalId>false</externalId>
+        <label>押印確認</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Unknown</fullName>
+                    <default>true</default>
+                </value>
+                <value>
+                    <fullName>Unverified</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Confirmed</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>PhoneReport__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -461,12 +488,9 @@ AND(
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>LastInspection__c</columns>
-        <columns>Equipment__c</columns>
         <columns>Worker__c</columns>
         <columns>InspectionDateTime__c</columns>
         <columns>InspectionCompleted__c</columns>
-        <columns>PhoneReport__c</columns>
         <columns>RECORDTYPE</columns>
         <filterScope>Everything</filterScope>
         <label>すべて選択</label>
@@ -543,12 +567,9 @@ AND(
     <listViews>
         <fullName>View20170923a</fullName>
         <columns>NAME</columns>
-        <columns>LastInspection__c</columns>
-        <columns>Equipment__c</columns>
         <columns>Worker__c</columns>
         <columns>InspectionDateTime__c</columns>
-        <columns>InspectionCompleted__c</columns>
-        <columns>PhoneReport__c</columns>
+        <columns>OUINConfirm__c</columns>
         <columns>RECORDTYPE</columns>
         <filterScope>Everything</filterScope>
         <filters>
@@ -613,6 +634,21 @@ AND(
         <compactLayoutAssignment>Inspection</compactLayoutAssignment>
         <label>エアー</label>
         <picklistValues>
+            <picklist>OUINConfirm__c</picklist>
+            <values>
+                <fullName>押印済</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>押印漏</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>未確認</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>SelectInspectionResult</picklist>
             <values>
                 <fullName>故障発生</fullName>
@@ -633,6 +669,21 @@ AND(
         <active>true</active>
         <compactLayoutAssignment>Inspection</compactLayoutAssignment>
         <label>コージェネ</label>
+        <picklistValues>
+            <picklist>OUINConfirm__c</picklist>
+            <values>
+                <fullName>押印済</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>押印漏</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>未確認</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>SelectInspectionResult</picklist>
             <values>
@@ -655,6 +706,21 @@ AND(
         <compactLayoutAssignment>Inspection</compactLayoutAssignment>
         <label>マスター</label>
         <picklistValues>
+            <picklist>OUINConfirm__c</picklist>
+            <values>
+                <fullName>押印済</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>押印漏</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>未確認</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>SelectInspectionResult</picklist>
             <values>
                 <fullName>故障発生</fullName>
@@ -676,6 +742,21 @@ AND(
         <compactLayoutAssignment>Inspection</compactLayoutAssignment>
         <label>太陽光</label>
         <picklistValues>
+            <picklist>OUINConfirm__c</picklist>
+            <values>
+                <fullName>押印済</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>押印漏</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>未確認</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>SelectInspectionResult</picklist>
             <values>
                 <fullName>故障発生</fullName>
@@ -696,6 +777,21 @@ AND(
         <active>true</active>
         <compactLayoutAssignment>Inspection</compactLayoutAssignment>
         <label>蓄電</label>
+        <picklistValues>
+            <picklist>OUINConfirm__c</picklist>
+            <values>
+                <fullName>押印済</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>押印漏</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>未確認</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>SelectInspectionResult</picklist>
             <values>

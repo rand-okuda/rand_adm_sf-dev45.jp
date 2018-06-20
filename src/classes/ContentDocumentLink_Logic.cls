@@ -36,8 +36,11 @@ public class ContentDocumentLink_Logic {
         }
         
         String url = getImageUrlFromCDLink(inspectionId);
+        Einstein_PredictionResult result = Einstein_Helper.predictImageDetectionURL(modelId, url);
         
-        Einstein_Helper.predictImageDetectionURL(modelId, url);
+        Inspection__c ip = [SELECT Id, OUINConfirm__c FROM Inspection__c WHERE Id = :inspectionId];
+        ip.OUINConfirm__c = result.probabilities[0].label;
+        update ip;
         
     }
     
