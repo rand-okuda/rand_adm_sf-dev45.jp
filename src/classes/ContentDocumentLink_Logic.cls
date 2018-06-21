@@ -46,26 +46,25 @@ public class ContentDocumentLink_Logic {
     
     public static String getImageUrlFromCDLink(Id recordId) {
         System.debug('@@@ getImageURLFromCDLink()');
-        List<ContentDocumentLink> cdl = [SELECT Id, LinkedEntityId, ContentDocumentId, IsDeleted, SystemModstamp, ShareType, Visibility FROM ContentDocumentLink WHERE LinkedEntityId=:recordId  ORDER BY SystemModstamp DESC];
-        List<ContentDocument> cd = [SELECT Id, LatestPublishedVersionId, PublishStatus, Title FROM ContentDocument WHERE Id=:cdl[0].ContentDocumentId];
-        List<ContentVersion> cv = [SELECT FirstPublishLocationId, Id, Title, IsLatest, CreatedDate FROM ContentVersion WHERE Id=:cd[0].LatestPublishedVersionId AND IsLatest=true];
-        if (cv.size()>0) {
-            ContentDistribution cDist = new ContentDistribution();
-            cDist.Name = 'Auto Create By Trigger';
-            cDist.ContentVersionId = cv[0].Id;
-            cDist.PreferencesNotifyOnVisit = false;
-            List<ContentDistribution> existCDistList = [SELECT Id, ContentVersionId, ContentDownloadUrl FROM ContentDistribution WHERE ContentVersionId = :cv[0].Id];
-            for(ContentDistribution existCDist :existCDistList){
-                System.debug('*** existCDist ' + existCDist);
-            }
-            if(existCDistList.isEmpty()){
-                insert cDist;
-                cDist = [SELECT Id, ContentDownloadUrl FROM ContentDistribution WHERE Id=:cDist.Id];
-                System.debug('*** cDist.ContentDownloadUrl ' + cDist.ContentDownloadUrl);
-                return cDist.ContentDownloadUrl;
-            }else{
-                System.debug('*** existCDistList[0].ContentDownloadUrl ' + existCDistList[0].ContentDownloadUrl);
-                return existCDistList[0].ContentDownloadUrl;
+        List<ContentDocumentLink> cdlList = [SELECT Id, LinkedEntityId, ContentDocumentId, IsDeleted, SystemModstamp, ShareType, Visibility FROM ContentDocumentLink WHERE LinkedEntityId=:recordId  ORDER BY SystemModstamp DESC];
+        if(!cdlList.isEmpty()){
+            List<ContentDocument> cdList = [SELECT Id, LatestPublishedVersionId, PublishStatus, Title, FileType, FileExtension FROM ContentDocument WHERE Id=:cdlList[0].ContentDocumentId AND FileType IN ('PNG','JPG','JPEG') AND FileExtension IN ('png','jpg','jpeg')];
+            if(!cdList.isEmpty()){
+                List<ContentVersion> cvList = [SELECT FirstPublishLocationId, Id, Title, IsLatest, CreatedDate FROM ContentVersion WHERE Id=:cdList[0].LatestPublishedVersionId AND IsLatest=true];
+                if (!cvList.isEmpty()) {
+                    ContentDistribution cDist = new ContentDistribution();
+                    cDist.Name = 'Auto Create By Trigger';
+                    cDist.ContentVersionId = cvList[0].Id;
+                    cDist.PreferencesNotifyOnVisit = false;
+                    List<ContentDistribution> existCDistList = [SELECT Id, ContentVersionId, ContentDownloadUrl FROM ContentDistribution WHERE ContentVersionId = :cvList[0].Id];
+                    for(ContentDistribution existCDist :existCDistList){
+                        System.debug('*** existCDist ' + existCDist);
+                    }
+                    if(!existCDistList.isEmpty()){
+                        System.debug('*** existCDistList[0].ContentDownloadUrl ' + existCDistList[0].ContentDownloadUrl);
+                        return existCDistList[0].ContentDownloadUrl;
+                    }
+                }
             }
         }
         return null;
