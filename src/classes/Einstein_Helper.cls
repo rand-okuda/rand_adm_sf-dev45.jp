@@ -10,12 +10,6 @@ public class Einstein_Helper {
             service.setType(Einstein_PredictionService.Types.IMAGE);
         } else if (dataType=='image-detection') {
             service.setType(Einstein_PredictionService.Types.IMAGE_DETECTION);
-        } else if (dataType=='image-multi-label') {
-            service.setType(Einstein_PredictionService.Types.IMAGE_MULTI_LABEL);
-        } else if (dataType=='text-intent') {
-            service.setType(Einstein_PredictionService.Types.INTENT);
-        } else if (dataType=='text-sentiment') {
-            service.setType(Einstein_PredictionService.Types.SENTIMENT);
         }
     }
     
@@ -71,8 +65,8 @@ public class Einstein_Helper {
         }
         System.debug('*** result ' + result);
         for ( Integer i=0; i<result.probabilities.size(); i++ ){
-            System.debug('*** result.probabilities ' + result.probabilities[i].label);
-            System.debug('*** result.probabilities ' + result.probabilities[i].probability);            
+            System.debug('*** result.probabilities.label ' + result.probabilities[i].label);
+            System.debug('*** result.probabilities.probability ' + result.probabilities[i].probability);            
         }
         return result;
     }

@@ -456,7 +456,7 @@ public with sharing class Test_Einstein {
         }
 
     }
-
+/**
     static testMethod void testContentDistributionTrigger() {
         //create a file
 
@@ -493,7 +493,7 @@ public with sharing class Test_Einstein {
     }
 
 
-
+**/
     static testMethod void apiUsage() {
 
         Einstein_PredictionService service = new Einstein_PredictionService('123', Einstein_PredictionService.Types.IMAGE);

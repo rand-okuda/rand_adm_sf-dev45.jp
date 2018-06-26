@@ -13,16 +13,20 @@ public class ContentDocumentLink_Logic {
         if(!existInspectionList.isEmpty()){
             for(Inspection__c ip :existInspectionList){
                 System.debug('*** ip ' + ip);
-                StampPredictCallOut(ip.Id);
+                String url = getImageUrlFromCDLink(ip.Id);
+                if(url != null){
+                    StampPredictCallOut(ip.Id, url);
+                }
             }
         }
         
     }
     
     @future(callout=true)
-    public static void StampPredictCallOut(Id inspectionId) {
+    public static void StampPredictCallOut(Id inspectionId, String url) {
         System.debug('@@@ StampPredictCallOut()');
         System.debug('*** inspectionId ' + inspectionId);
+        System.debug('*** url ' + url);
         
         String modelId;
         for(Einstein_Dataset ed :Einstein_Helper.getDatasets('image-detection')){
@@ -35,12 +39,12 @@ public class ContentDocumentLink_Logic {
             }
         }
         
-        String url = getImageUrlFromCDLink(inspectionId);
-        Einstein_PredictionResult result = Einstein_Helper.predictImageDetectionURL(modelId, url);
-        
-        Inspection__c ip = [SELECT Id, OUINConfirm__c FROM Inspection__c WHERE Id = :inspectionId];
-        ip.OUINConfirm__c = result.probabilities[0].label;
-        update ip;
+        if(url != null && modelId != null){
+            Einstein_PredictionResult result = Einstein_Helper.predictImageDetectionURL(modelId, url);
+            Inspection__c ip = [SELECT Id, OUINConfirm__c FROM Inspection__c WHERE Id = :inspectionId];
+            ip.OUINConfirm__c = result.probabilities[0].label;
+            update ip;            
+        }
         
     }
     
@@ -48,7 +52,9 @@ public class ContentDocumentLink_Logic {
         System.debug('@@@ getImageURLFromCDLink()');
         List<ContentDocumentLink> cdlList = [SELECT Id, LinkedEntityId, ContentDocumentId, IsDeleted, SystemModstamp, ShareType, Visibility FROM ContentDocumentLink WHERE LinkedEntityId=:recordId  ORDER BY SystemModstamp DESC];
         if(!cdlList.isEmpty()){
-            List<ContentDocument> cdList = [SELECT Id, LatestPublishedVersionId, PublishStatus, Title, FileType, FileExtension FROM ContentDocument WHERE Id=:cdlList[0].ContentDocumentId AND FileType IN ('PNG','JPG','JPEG') AND FileExtension IN ('png','jpg','jpeg')];
+            String excludeTitle = String.valueOf(recordId).substring(0, 15);
+            System.debug('*** excludeTitle ' + excludeTitle);
+            List<ContentDocument> cdList = [SELECT Id, LatestPublishedVersionId, PublishStatus, Title, FileType, FileExtension FROM ContentDocument WHERE Id=:cdlList[0].ContentDocumentId AND Title != :excludeTitle AND FileType IN ('PNG','JPG','JPEG') AND FileExtension IN ('png','jpg','jpeg')];
             if(!cdList.isEmpty()){
                 List<ContentVersion> cvList = [SELECT FirstPublishLocationId, Id, Title, IsLatest, CreatedDate FROM ContentVersion WHERE Id=:cdList[0].LatestPublishedVersionId AND IsLatest=true];
                 if (!cvList.isEmpty()) {

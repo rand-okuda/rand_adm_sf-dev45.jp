@@ -441,11 +441,11 @@ private class InstallationTests {
         createIpDatas(1);
         Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
         System.runAs(user01) {
+            Test.startTest();
             PageReference pageRef = Page.InspectionTableEditLEX;
             ApexPages.StandardController stdController = new ApexPages.StandardController(ip);
             InspectionExtension extController = new InspectionExtension(stdController);
             Test.setCurrentPage(pageRef);
-            Test.startTest();
             extController.confirmationCreateInspectionPDF();
             extController.createInspectionPDF();
             Test.stopTest();

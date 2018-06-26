@@ -21,18 +21,9 @@ trigger InspectionTrigger on Inspection__c (before insert, after insert, after u
             InspectionLogic.CreateInspectionActivity(ChangeScheduleInspectionList);                
         }
     }
-
-    if(Trigger.isAfter && Trigger.isInsert){
-        System.debug('%%%InspectionTrigger isAfter isInsert');
-        List<Inspection__c> QRcodeImageToGetInspectionList = new List<Inspection__c>();
-        for(Inspection__c ip :Trigger.new){
-            QRcodeImageToGetInspectionList.add(ip);
-        }
-        InspectionLogic.QRcodeImageToGet(QRcodeImageToGetInspectionList);
-    }
-
+    
     if(Trigger.isAfter && Trigger.isUpdate){
-        System.debug('%%%InspectionTrigger isAfter isUpdate');
+        System.debug('%%%InspectionTrigger isAfter isUpdate1 [1]');
         List<Inspection__c> ChangeScheduleInspectionList = new List<Inspection__c>();
         for ( Integer i=0; i<Trigger.New.size(); i++ ){
             if(Trigger.New[i].InspectionDateTime__c != Trigger.Old[i].InspectionDateTime__c || Trigger.New[i].Worker__c != Trigger.Old[i].Worker__c && Trigger.New[i].InspectionDateTime__c != null && Trigger.New[i].Worker__c != null){
@@ -45,7 +36,7 @@ trigger InspectionTrigger on Inspection__c (before insert, after insert, after u
     }
     
     if(Trigger.isAfter && Trigger.isUpdate){
-        System.debug('%%%InspectionTrigger isAfter isUpdate');
+        System.debug('%%%InspectionTrigger isAfter isUpdate [2]');
         List<Inspection__c> CompletedInspectionList = new List<Inspection__c>();
         for ( Integer i=0; i<Trigger.New.size(); i++ ){
             if(Trigger.New[i].InspectionCompleted__c != Trigger.Old[i].InspectionCompleted__c){
@@ -59,7 +50,7 @@ trigger InspectionTrigger on Inspection__c (before insert, after insert, after u
     }
 
     if(Trigger.isAfter && Trigger.isUpdate){
-        System.debug('%%%InspectionTrigger isAfter isUpdate');
+        System.debug('%%%InspectionTrigger isAfter isUpdate [3]');
         List<Inspection__c> PDFOutputInspectionList = new List<Inspection__c>();
         for(Inspection__c ipNew :Trigger.new){
             if(ipNew.TablePDFOutput__c){
@@ -70,18 +61,5 @@ trigger InspectionTrigger on Inspection__c (before insert, after insert, after u
             InspectionLogic.CreateInspectionPDF(PDFOutputInspectionList);
         }
     }
-
-    if(Trigger.isAfter && Trigger.isUpdate){
-        System.debug('%%%InspectionTrigger isAfter isUpdate');
-        List<Inspection__c> QRcodeImageToGetInspectionList = new List<Inspection__c>();
-        for ( Integer i=0; i<Trigger.New.size(); i++ ){
-            if(Trigger.New[i].InspectionDateTime__c != Trigger.Old[i].InspectionDateTime__c || Trigger.New[i].Worker__c != Trigger.Old[i].Worker__c){
-                QRcodeImageToGetInspectionList.add(Trigger.New[i]);
-            }
-        }
-        if(QRcodeImageToGetInspectionList.size() > 0){
-            InspectionLogic.QRcodeImageToGet(QRcodeImageToGetInspectionList);
-        }
-    }
-
+    
 }
