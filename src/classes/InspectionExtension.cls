@@ -280,8 +280,8 @@ public with sharing class InspectionExtension {
                 renderQR = true;
                 System.debug('***imageAtt(Exist) ' +imageAtt);
             }else{
-                Integer existVcCount = [SELECT COUNT() FROM ContentVersion WHERE Title = :ipId15 AND IsMajorVersion = true];
-                if(existVcCount > 0){
+                Integer existCvCount = [SELECT COUNT() FROM ContentVersion WHERE Title = :ipId15 AND IsMajorVersion = true];
+                if(existCvCount > 0){
                     ContentVersion cv = [SELECT Id, Title, VersionData FROM ContentVersion WHERE Title = :ipId15 AND IsMajorVersion = true LIMIT 1];
                     Attachment att = new Attachment();
                     att.Name = cv.Title;

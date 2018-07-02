@@ -7,105 +7,7 @@ private class InstallationTests {
     }
     
     @isTest
-    static void InstallTest010() {
-        // EquipmentTrigger & EquipmentLogic.QRcodeImageToGet
-        System.debug('###InstallTest010');
-        Account acc = [SELECT Id FROM Account LIMIT 1];
-        Model__c mo = [SELECT Id FROM Model__c LIMIT 1];
-        Equipment__c eq = new Equipment__c();
-        eq.Account__c = acc.Id;
-        eq.Model__c = mo.Id;
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new QueueableGoogleCallMock());
-        insert eq;
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest011() {
-        // EquipmentTrigger & EquipmentLogic.QRcodeImageToGet
-        System.debug('###InstallTest011');
-        Account acc = [SELECT Id FROM Account LIMIT 1];
-        Model__c mo = [SELECT Id FROM Model__c LIMIT 1];
-        Equipment__c eq = new Equipment__c();
-        eq.Account__c = acc.Id;
-        eq.Model__c = mo.Id;
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new QueueableGoogleCallMock());
-        insert eq;
-        update eq;
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest012() {
-        // EquipmentTrigger & EquipmentLogic.QRcodeImageToGet
-        System.debug('###InstallTest012');
-        Account acc = [SELECT Id FROM Account LIMIT 1];
-        Model__c mo = [SELECT Id FROM Model__c LIMIT 1];
-        Equipment__c eq = new Equipment__c();
-        eq.Account__c = acc.Id;
-        eq.Model__c = mo.Id;
-        insert eq;
-        ContentVersion cv = new ContentVersion();
-        cv.PathOnClient = '/TEST';
-        cv.VersionData = blob.valueOf('TEST');
-        cv.Title = String.valueOf(eq.Id).substring(0, 15);
-        insert cv;
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new QueueableGoogleCallMock());
-        update eq;
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest013() {
-        // EquipmentTrigger
-        System.debug('###InstallTest013');
-        createEqDatas(1);
-        createIpDatas(1);
-        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
-        ip.InspectionRresultA__c = '00';
-        ip.InspectionRresultB__c = '00';
-        ip.InspectionRresultC__c = '00';
-        ip.InspectionRresultD__c = '00';
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new QueueableGoogleCallMock());
-        update ip;
-        Test.stopTest();
-    }
-    
-    @isTest
     static void InstallTest020() {
-        // InspectionTrigger & InspectionLogic.QRcodeImageToGet
-        System.debug('###InstallTest020');
-        createEqDatas(1);
-        User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
-        Equipment__c eq = [SELECT Id FROM Equipment__c LIMIT 1];
-        Inspection__c ip = new Inspection__c();
-        ip.Equipment__c = eq.Id;
-        ip.InspectionDateTime__c = System.now();
-        ip.Worker__c = user01.Id;
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new QueueableGoogleCallMock());
-        insert ip;
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest021() {
-        // InspectionLogic.QueueableGoogleCall
-        System.debug('###InstallTest021');
-        Inspection__c ip = new Inspection__c();
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new QueueableGoogleCallMock());
-        InspectionLogic.QueueableGoogleCall queueableGoogleCall = new InspectionLogic.QueueableGoogleCall(ip);
-        System.enqueueJob(queueableGoogleCall);
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest022() {
         // InspectionLogic.QueueableGoogleCall
         System.debug('###InstallTest022');
         createEqDatas(1);
@@ -206,73 +108,6 @@ private class InstallationTests {
     }
     
     @isTest
-    static void InstallTest070() {
-        // FeedItemTrigger & FeedItemLogic.CommentFeedSearch
-        System.debug('###InstallTest070');
-        createEqDatas(1);
-        User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
-        Equipment__c eq = [SELECT Name FROM Equipment__c LIMIT 1];
-        FeedItem fi = new FeedItem();
-        fi.Body = '<p>' + eq.Name + '</p>';
-        fi.ParentId = user01.Id;
-        Test.startTest();
-        insert fi;
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest071() {
-        // FeedItemTrigger & FeedItemLogic.CommentFeedSearch
-        System.debug('###InstallTest071');
-        createEqDatas(1);
-        createIpDatas(1);
-        User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
-        Equipment__c eq = [SELECT Name FROM Equipment__c LIMIT 1];
-        FeedItem fi = new FeedItem();
-        fi.Body = '<p>' + eq.Name + '</p>';
-        fi.ParentId = user01.Id;
-        Test.startTest();
-        insert fi;
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest072() {
-        // FeedItemTrigger & FeedItemLogic.CommentFeedSearch
-        System.debug('###InstallTest072');
-        createEqDatas(1);
-        createIpDatas(1);
-        User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
-        FeedItem fi = new FeedItem();
-        fi.Body = '<p>' + '0000' + '</p>';
-        fi.ParentId = user01.Id;
-        Test.startTest();
-        insert fi;
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest080() {
-        // FeedItemTrigger & FeedItemLogic.QRcodeImageSearch
-        System.debug('###InstallTest080');
-        createEqDatas(1);
-        User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
-        delete [SELECT Id FROM ContentDocument];
-        ContentVersion cv = new ContentVersion();
-        cv.PathOnClient = '/TEST';
-        cv.VersionData = blob.valueOf('TEST');
-        insert cv;
-        FeedItem fi = new FeedItem();
-        fi.Title = 'TEST';
-        fi.ParentId = user01.Id;
-        fi.RelatedRecordId = cv.Id;
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new QueueableZXingCallMock('', 200, 'Decode Succeeded'));
-        insert fi;
-        Test.stopTest();
-    }
-    
-    @isTest
     static void InstallTest090() {
         // ContentVersionTrigger & ContentVersionLogic.QRcodeImageSearch
         System.debug('###InstallTest090');
@@ -280,7 +115,7 @@ private class InstallationTests {
         ContentVersion cv = new ContentVersion();
         cv.PathOnClient = '/TEST';
         cv.VersionData = blob.valueOf('TEST');
-        cv.Origin = 'H';
+        cv.Origin = 'C';
         createEqDatas(1);
         createIpDatas(1);
         Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
@@ -298,7 +133,7 @@ private class InstallationTests {
         ContentVersion cv = new ContentVersion();
         cv.PathOnClient = '/TEST';
         cv.VersionData = blob.valueOf('TEST');
-        cv.Origin = 'H';
+        cv.Origin = 'C';
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new QueueableZXingCallMock('XXX', 200, 'Decode Succeeded'));
         insert cv;
@@ -313,7 +148,7 @@ private class InstallationTests {
         ContentVersion cv = new ContentVersion();
         cv.PathOnClient = '/TEST';
         cv.VersionData = blob.valueOf('TEST');
-        cv.Origin = 'H';
+        cv.Origin = 'C';
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new QueueableZXingCallMock('', 400, 'No Barcode Found'));
         insert cv;
@@ -328,7 +163,7 @@ private class InstallationTests {
         ContentVersion cv = new ContentVersion();
         cv.PathOnClient = '/TEST';
         cv.VersionData = blob.valueOf('TEST');
-        cv.Origin = 'H';
+        cv.Origin = 'C';
         insert cv;
         ContentVersion insertedCv = [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = :cv.Id];
         ContentDocument insertedCd = [SELECT Id, Title FROM ContentDocument WHERE Id = :insertedCv.ContentDocumentId];
@@ -347,7 +182,7 @@ private class InstallationTests {
         ContentVersion cv = new ContentVersion();
         cv.PathOnClient = '/TEST';
         cv.VersionData = blob.valueOf('TEST');
-        cv.Origin = 'H';
+        cv.Origin = 'C';
         insert cv;
         ContentVersion insertedCv = [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = :cv.Id];
         ContentDocument insertedCd = [SELECT Id, Title FROM ContentDocument WHERE Id = :insertedCv.ContentDocumentId];
@@ -365,7 +200,7 @@ private class InstallationTests {
         ContentVersion cv = new ContentVersion();
         cv.PathOnClient = '/TEST';
         cv.VersionData = blob.valueOf('TEST');
-        cv.Origin = 'H';
+        cv.Origin = 'C';
         Test.startTest();
         insert cv;
         Test.stopTest();
@@ -681,6 +516,70 @@ private class InstallationTests {
         }
     }
     
+    @isTest
+    static void InstallTest210() {
+        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.StampPredict
+        System.debug('###InstallTest210');
+        User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
+        createEqDatas(1);
+        createIpDatas(1);
+        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
+        ContentVersion cv = new ContentVersion();
+        cv.Title = String.valueOf(ip.Id).substring(0, 15);
+        cv.VersionData = Blob.valueOf('DummyString');
+        cv.PathOnClient = '/' + cv.Title + '.png';
+        insert cv;
+        ContentDocument cd = [SELECT Id, Title FROM ContentDocument WHERE Title=:cv.Title];
+        ContentDocumentLink cdl = new ContentDocumentLink();
+        cdl.ContentDocumentId = cd.Id;
+        cdl.ShareType = 'V';
+        cdl.Visibility = 'AllUsers';
+        cdl.LinkedEntityId = ip.Id;
+        Test.startTest();
+        insert cdl;
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void InstallTest211() {
+        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.getImageUrlFromCDLink
+        System.debug('###InstallTest211');
+        User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
+        createEqDatas(1);
+        createIpDatas(1);
+        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
+        ContentVersion cv = new ContentVersion();
+        cv.Title = 'XXX';
+        cv.VersionData = Blob.valueOf('DummyString');
+        cv.PathOnClient = '/' + cv.Title + '.png';
+        insert cv;
+        ContentDocument cd = [SELECT Id, Title FROM ContentDocument WHERE Title=:cv.Title];
+        ContentDocumentLink cdl = new ContentDocumentLink();
+        cdl.ContentDocumentId = cd.Id;
+        cdl.ShareType = 'V';
+        cdl.Visibility = 'AllUsers';
+        cdl.LinkedEntityId = user01.Id;
+        insert cdl;
+        Test.startTest();
+        ContentDocumentLink_Logic.getImageUrlFromCDLink(user01.Id);
+        Test.stopTest();
+    }
+/*    
+    @isTest
+    static void InstallTest212() {
+        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.StampPredictCallOut
+        System.debug('###InstallTest212');
+        createEqDatas(1);
+        createIpDatas(1);
+        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
+        String Id = ip.Id;
+        String url = 'https://tenki.jp/radar/6/';
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
+        ContentDocumentLink_Logic.StampPredictCallOut(Id, url);
+        Test.stopTest();
+    }
+*/    
     static void createMasterDatas(Integer numAcc, Integer numMo){
         // Setup Testing Datas
         System.debug('###createMasterDatas ');

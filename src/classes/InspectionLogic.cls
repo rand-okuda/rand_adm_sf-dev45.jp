@@ -43,11 +43,6 @@ public class InspectionLogic {
                 if(ip.Id != null){
                     cv.Title = String.valueOf(ip.Id).substring(0, 15);
                 }
-                Integer existImageCount = [SELECT COUNT() FROM ContentDocument WHERE Title = :cv.Title];
-                if(existImageCount > 0){
-                    ContentDocument existImage = [SELECT Id, Title FROM ContentDocument WHERE Title = :cv.Title];
-                    cv.ContentDocumentId = existImage.Id;
-                }
                 insert cv;
                 System.debug('***cv ' + cv);
                 ContentVersion insertedCv = [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = :cv.Id];
