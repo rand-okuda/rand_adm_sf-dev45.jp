@@ -28,22 +28,20 @@ public class ContentDocumentLink_Logic {
         System.debug('*** inspectionId ' + inspectionId);
         System.debug('*** url ' + url);
         
-        String modelId;
-        for(Einstein_Dataset ed :Einstein_Helper.getDatasets('image-detection')){
-            if(ed.Name == 'OUIN'){
-                System.debug('*** ed.id'  + ed.id);
-                List<Einstein_Model> modelList = Einstein_Helper.getModels(ed.id, 'image-detection');
-                modelId = modelList[0].modelId;
+        List<Einstein_Dataset> edList = Einstein_Helper.getDatasets('image-detection');
+        if(!edList.isEmpty()){
+            System.debug('*** edList[0].id'  + edList[0].id);
+            List<Einstein_Model> modelList = Einstein_Helper.getModels(edList[0].id, 'image-detection');
+            if(!modelList.isEmpty()){
+                String modelId = modelList[0].modelId;
                 System.debug('*** modelId ' + modelId);
-                break;
+                Einstein_PredictionResult result = Einstein_Helper.predictImageDetectionURL(modelId, url);
+                if(!result.probabilities.isEmpty()){
+                    Inspection__c ip = [SELECT Id, OUINConfirm__c FROM Inspection__c WHERE Id = :inspectionId];
+                    ip.OUINConfirm__c = result.probabilities[0].label;
+                    update ip;
+                }
             }
-        }
-        
-        if(url != null && modelId != null){
-            Einstein_PredictionResult result = Einstein_Helper.predictImageDetectionURL(modelId, url);
-            Inspection__c ip = [SELECT Id, OUINConfirm__c FROM Inspection__c WHERE Id = :inspectionId];
-            ip.OUINConfirm__c = result.probabilities[0].label;
-            update ip;            
         }
         
     }
@@ -54,24 +52,24 @@ public class ContentDocumentLink_Logic {
         if(!cdlList.isEmpty()){
             String excludeTitle = String.valueOf(recordId).substring(0, 15);
             System.debug('*** excludeTitle ' + excludeTitle);
-            List<ContentDocument> cdList = [SELECT Id, LatestPublishedVersionId, PublishStatus, Title, FileType, FileExtension FROM ContentDocument WHERE Id=:cdlList[0].ContentDocumentId AND Title != :excludeTitle AND FileType IN ('PNG','JPG','JPEG') AND FileExtension IN ('png','jpg','jpeg')];
+            List<ContentDocument> cdList = [SELECT Id, LatestPublishedVersionId, Title, FileType, FileExtension FROM ContentDocument WHERE Id=:cdlList[0].ContentDocumentId AND Title != :excludeTitle AND FileType IN ('PNG','JPG','JPEG') AND FileExtension IN ('png','jpg','jpeg')];
             if(!cdList.isEmpty()){
-                List<ContentVersion> cvList = [SELECT FirstPublishLocationId, Id, Title, IsLatest, CreatedDate FROM ContentVersion WHERE Id=:cdList[0].LatestPublishedVersionId AND IsLatest=true];
+                System.debug('*** cdList[0].Title ' + cdList[0].Title);
+                List<ContentVersion> cvList = [SELECT Id, IsLatest FROM ContentVersion WHERE Id=:cdList[0].LatestPublishedVersionId AND IsLatest=true];
                 if (!cvList.isEmpty()) {
                     ContentDistribution cDist = new ContentDistribution();
                     cDist.Name = 'Auto Create By Trigger';
                     cDist.ContentVersionId = cvList[0].Id;
                     cDist.PreferencesNotifyOnVisit = false;
                     List<ContentDistribution> existCDistList = [SELECT Id, ContentVersionId, ContentDownloadUrl FROM ContentDistribution WHERE ContentVersionId = :cvList[0].Id];
-                    for(ContentDistribution existCDist :existCDistList){
-                        System.debug('*** existCDist ' + existCDist);
-                    }
+                    System.debug('*** existCDistList[0] ' + existCDistList[0]);
                     if(!existCDistList.isEmpty()){
                         System.debug('*** existCDistList[0].ContentDownloadUrl ' + existCDistList[0].ContentDownloadUrl);
                         return existCDistList[0].ContentDownloadUrl;
                     }
                 }
             }
+            return null;
         }
         return null;
     }

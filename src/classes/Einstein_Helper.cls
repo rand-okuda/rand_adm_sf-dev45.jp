@@ -27,7 +27,6 @@ public class Einstein_Helper {
         if (service.httpStatusCode>200) {
             System.debug('*** service.httpErrorMessage ' + service.httpErrorMessage);
         }
-        System.debug('*** datasetsReturn ' + datasetsReturn);
         for ( Integer i=0; i<datasetsReturn.size(); i++ ){
             System.debug('*** datasetsReturn.Id ' + datasetsReturn[i].Id);
             System.debug('*** datasetsReturn.Name ' + datasetsReturn[i].Name);
@@ -44,7 +43,6 @@ public class Einstein_Helper {
         if (service.httpStatusCode>200) {
             System.debug('*** service.httpErrorMessage ' + service.httpErrorMessage);
         }
-        System.debug('*** models ' + models);
         for ( Integer i=0; i<models.size(); i++ ){
             System.debug('*** models.modelId ' + models[i].modelId);
             System.debug('*** models.name ' + models[i].name);
@@ -62,13 +60,14 @@ public class Einstein_Helper {
         Einstein_PredictionResult result = service.detectImageUrl(modelId, url, 0, '');
         if (service.httpStatusCode>200) {
             System.debug('*** service.httpErrorMessage ' + service.httpErrorMessage);
+        }else{
+            for ( Integer i=0; i<result.probabilities.size(); i++ ){
+                System.debug('*** result.probabilities.label ' + result.probabilities[i].label);
+                System.debug('*** result.probabilities.probability ' + result.probabilities[i].probability);            
+            }
+            return result;
         }
-        System.debug('*** result ' + result);
-        for ( Integer i=0; i<result.probabilities.size(); i++ ){
-            System.debug('*** result.probabilities.label ' + result.probabilities[i].label);
-            System.debug('*** result.probabilities.probability ' + result.probabilities[i].probability);            
-        }
-        return result;
+        return null;
     }
 
 }
