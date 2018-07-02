@@ -564,22 +564,102 @@ private class InstallationTests {
         ContentDocumentLink_Logic.getImageUrlFromCDLink(user01.Id);
         Test.stopTest();
     }
-/*    
+    
     @isTest
     static void InstallTest212() {
-        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.StampPredictCallOut
+        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.getImageUrlFromCDLink
         System.debug('###InstallTest212');
+        User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
+        User user02 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3702'];
+        createEqDatas(1);
+        createIpDatas(1);
+        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
+        ContentVersion cv = new ContentVersion();
+        cv.Title = 'XXX';
+        cv.VersionData = Blob.valueOf('DummyString');
+        cv.PathOnClient = '/' + cv.Title + '.png';
+        insert cv;
+        ContentDocument cd = [SELECT Id, Title FROM ContentDocument WHERE Title=:cv.Title];
+        ContentDocumentLink cdl = new ContentDocumentLink();
+        cdl.ContentDocumentId = cd.Id;
+        cdl.ShareType = 'V';
+        cdl.Visibility = 'AllUsers';
+        cdl.LinkedEntityId = user01.Id;
+        insert cdl;
+        Test.startTest();
+        ContentDocumentLink_Logic.getImageUrlFromCDLink(user02.Id);
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void InstallTest213() {
+        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.getImageUrlFromCDLink
+        System.debug('###InstallTest213');
+        User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
+        createEqDatas(1);
+        createIpDatas(1);
+        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
+        ContentVersion cv = new ContentVersion();
+        cv.Title = String.valueOf(user01.Id).substring(0, 15);
+        cv.VersionData = Blob.valueOf('DummyString');
+        cv.PathOnClient = '/' + cv.Title + '.png';
+        insert cv;
+        ContentDocument cd = [SELECT Id, Title FROM ContentDocument WHERE Title=:cv.Title];
+        ContentDocumentLink cdl = new ContentDocumentLink();
+        cdl.ContentDocumentId = cd.Id;
+        cdl.ShareType = 'V';
+        cdl.Visibility = 'AllUsers';
+        cdl.LinkedEntityId = user01.Id;
+        insert cdl;
+        Test.startTest();
+        ContentDocumentLink_Logic.getImageUrlFromCDLink(user01.Id);
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void InstallTest220() {
+        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.StampPredictCallOut
+        System.debug('###InstallTest220');
         createEqDatas(1);
         createIpDatas(1);
         Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
         String Id = ip.Id;
-        String url = 'https://tenki.jp/radar/6/';
+        String url = 'https://xxx.com/yyy/zzz/';
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
         ContentDocumentLink_Logic.StampPredictCallOut(Id, url);
         Test.stopTest();
     }
-*/    
+    
+    @isTest
+    static void InstallTest221() {
+        // Einstein_Helper.predictImageDetectionURL
+        System.debug('###InstallTest221');
+        createEqDatas(1);
+        createIpDatas(1);
+        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
+        String Id = ip.Id;
+        String url = 'https://xxx.com/yyy/zzz/';
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
+        Einstein_Helper.predictImageDetectionURL(Id, url);
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void InstallTest222() {
+        // Einstein_Helper
+        System.debug('###InstallTest222');
+        String Id = '000';
+        String url = 'https://xxx.com/yyy/zzz/';
+        Long datasetId = long.valueOf('000');
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
+        Einstein_Helper.getModels(datasetId, 'image-detection');
+        Einstein_Helper.predictImageDetectionURL(Id, url);
+        Test.stopTest();
+    }
+
     static void createMasterDatas(Integer numAcc, Integer numMo){
         // Setup Testing Datas
         System.debug('###createMasterDatas ');
