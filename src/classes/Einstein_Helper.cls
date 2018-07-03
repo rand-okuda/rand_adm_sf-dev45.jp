@@ -6,9 +6,7 @@ public class Einstein_Helper {
         if (service==null) {
             service = new Einstein_PredictionService(Einstein_PredictionService.Types.IMAGE);
         }
-        if (dataType=='image') {
-            service.setType(Einstein_PredictionService.Types.IMAGE);
-        } else if (dataType=='image-detection') {
+        if (dataType=='image-detection') {
             service.setType(Einstein_PredictionService.Types.IMAGE_DETECTION);
         }
     }
@@ -26,10 +24,11 @@ public class Einstein_Helper {
         }
         if (service.httpStatusCode>200) {
             System.debug('*** service.httpErrorMessage ' + service.httpErrorMessage);
-        }
-        for ( Integer i=0; i<datasetsReturn.size(); i++ ){
-            System.debug('*** datasetsReturn.Id ' + datasetsReturn[i].Id);
-            System.debug('*** datasetsReturn.Name ' + datasetsReturn[i].Name);
+        }else{
+            for ( Integer i=0; i<datasetsReturn.size(); i++ ){
+                System.debug('*** datasetsReturn.Id ' + datasetsReturn[i].Id);
+                System.debug('*** datasetsReturn.Name ' + datasetsReturn[i].Name);
+            }
         }
         return datasetsReturn;
     }
@@ -42,11 +41,12 @@ public class Einstein_Helper {
         Einstein_Model[] models = service.getModels(datasetId);
         if (service.httpStatusCode>200) {
             System.debug('*** service.httpErrorMessage ' + service.httpErrorMessage);
-        }
-        for ( Integer i=0; i<models.size(); i++ ){
-            System.debug('*** models.modelId ' + models[i].modelId);
-            System.debug('*** models.name ' + models[i].name);
-            System.debug('*** models.modelType ' + models[i].modelType);
+        }else{
+            for ( Integer i=0; i<models.size(); i++ ){
+                System.debug('*** models.modelId ' + models[i].modelId);
+                System.debug('*** models.name ' + models[i].name);
+                System.debug('*** models.modelType ' + models[i].modelType);
+            }
         }
         return models;
     }
@@ -65,9 +65,8 @@ public class Einstein_Helper {
                 System.debug('*** result.probabilities.label ' + result.probabilities[i].label);
                 System.debug('*** result.probabilities.probability ' + result.probabilities[i].probability);            
             }
-            return result;
         }
-        return null;
+        return result;
     }
 
 }

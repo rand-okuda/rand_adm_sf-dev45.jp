@@ -542,8 +542,37 @@ private class InstallationTests {
     
     @isTest
     static void InstallTest211() {
-        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.getImageUrlFromCDLink
+        // ContentDocumentLink_Logic.StampPredictCallOut
         System.debug('###InstallTest211');
+        createEqDatas(1);
+        createIpDatas(1);
+        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
+        String Id = ip.Id;
+        String url = 'https://xxx.com/yyy/zzz/';
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
+        ContentDocumentLink_Logic.StampPredictCallOut(Id, url);
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void InstallTest212() {
+        // Einstein_Helper
+        System.debug('###InstallTest212');
+        String Id = '000';
+        String url = 'https://xxx.com/yyy/zzz/';
+        Long datasetId = long.valueOf('000');
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
+        Einstein_Helper.getModels(datasetId, 'image-detection');
+        Einstein_Helper.predictImageDetectionURL(Id, url);
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void InstallTest213() {
+        // ContentDocumentLink_Logic.getImageUrlFromCDLink
+        System.debug('###InstallTest213');
         User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
         createEqDatas(1);
         createIpDatas(1);
@@ -566,9 +595,9 @@ private class InstallationTests {
     }
     
     @isTest
-    static void InstallTest212() {
-        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.getImageUrlFromCDLink
-        System.debug('###InstallTest212');
+    static void InstallTest214() {
+        // ContentDocumentLink_Logic.getImageUrlFromCDLink
+        System.debug('###InstallTest214');
         User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
         User user02 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3702'];
         createEqDatas(1);
@@ -592,9 +621,9 @@ private class InstallationTests {
     }
     
     @isTest
-    static void InstallTest213() {
-        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.getImageUrlFromCDLink
-        System.debug('###InstallTest213');
+    static void InstallTest215() {
+        // ContentDocumentLink_Logic.getImageUrlFromCDLink
+        System.debug('###InstallTest215');
         User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
         createEqDatas(1);
         createIpDatas(1);
@@ -616,50 +645,6 @@ private class InstallationTests {
         Test.stopTest();
     }
     
-    @isTest
-    static void InstallTest220() {
-        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.StampPredictCallOut
-        System.debug('###InstallTest220');
-        createEqDatas(1);
-        createIpDatas(1);
-        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
-        String Id = ip.Id;
-        String url = 'https://xxx.com/yyy/zzz/';
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
-        ContentDocumentLink_Logic.StampPredictCallOut(Id, url);
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest221() {
-        // Einstein_Helper.predictImageDetectionURL
-        System.debug('###InstallTest221');
-        createEqDatas(1);
-        createIpDatas(1);
-        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
-        String Id = ip.Id;
-        String url = 'https://xxx.com/yyy/zzz/';
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
-        Einstein_Helper.predictImageDetectionURL(Id, url);
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest222() {
-        // Einstein_Helper
-        System.debug('###InstallTest222');
-        String Id = '000';
-        String url = 'https://xxx.com/yyy/zzz/';
-        Long datasetId = long.valueOf('000');
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
-        Einstein_Helper.getModels(datasetId, 'image-detection');
-        Einstein_Helper.predictImageDetectionURL(Id, url);
-        Test.stopTest();
-    }
-
     static void createMasterDatas(Integer numAcc, Integer numMo){
         // Setup Testing Datas
         System.debug('###createMasterDatas ');
