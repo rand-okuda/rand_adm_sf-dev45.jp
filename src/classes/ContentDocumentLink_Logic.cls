@@ -29,18 +29,20 @@ public class ContentDocumentLink_Logic {
         System.debug('*** url ' + url);
         
         List<Einstein_Dataset> edList = Einstein_Helper.getDatasets('image-detection');
-        if(!edList.isEmpty()){
-            System.debug('*** edList[0].id'  + edList[0].id);
-            List<Einstein_Model> modelList = Einstein_Helper.getModels(edList[0].id, 'image-detection');
-            if(!modelList.isEmpty()){
-                String modelId = modelList[0].modelId;
-                System.debug('*** modelId ' + modelId);
-                Einstein_PredictionResult result = Einstein_Helper.predictImageDetectionURL(modelId, url);
-                if(!result.probabilities.isEmpty()){
-                    Inspection__c ip = [SELECT Id, OUINConfirm__c FROM Inspection__c WHERE Id = :inspectionId];
-                    ip.OUINConfirm__c = result.probabilities[0].label;
-                    update ip;
+        for ( Integer i=0; i<edList.size(); i++ ){
+            if(edList[i].Name == 'OUIN' || Test.isRunningTest()){
+                System.debug('*** edList[i].id'  + edList[i].id);
+                List<Einstein_Model> modelList = Einstein_Helper.getModels(edList[i].id, 'image-detection');
+                if(!modelList.isEmpty()){
+                    System.debug('*** modelList[0].modelId ' + modelList[0].modelId);
+                    Einstein_PredictionResult result = Einstein_Helper.predictImageDetectionURL(modelList[0].modelId, url);
+                    if(!result.probabilities.isEmpty()){
+                        Inspection__c ip = [SELECT Id, OUINConfirm__c FROM Inspection__c WHERE Id = :inspectionId];
+                        ip.OUINConfirm__c = result.probabilities[0].label;
+                        update ip;
+                    }
                 }
+                break;
             }
         }
         

@@ -18,9 +18,7 @@ public class Einstein_Helper {
         List<Einstein_Dataset> datasets = service.getDatasets();
         List<Einstein_Dataset> datasetsReturn = new List<Einstein_Dataset>();
         for (Einstein_Dataset dataset : datasets) {
-            if (dataset.type==dataType) {
-                datasetsReturn.add(dataset);
-            }
+            datasetsReturn.add(dataset);
         }
         if (service.httpStatusCode>200) {
             System.debug('*** service.httpErrorMessage ' + service.httpErrorMessage);
@@ -30,6 +28,7 @@ public class Einstein_Helper {
                 System.debug('*** datasetsReturn.Name ' + datasetsReturn[i].Name);
             }
         }
+        System.debug('*** datasetsReturn ' + datasetsReturn);
         return datasetsReturn;
     }
 
@@ -48,6 +47,7 @@ public class Einstein_Helper {
                 System.debug('*** models.modelType ' + models[i].modelType);
             }
         }
+        System.debug('*** models ' + models);
         return models;
     }
 
@@ -66,6 +66,7 @@ public class Einstein_Helper {
                 System.debug('*** result.probabilities.probability ' + result.probabilities[i].probability);            
             }
         }
+        System.debug('*** result ' + result);
         return result;
     }
 

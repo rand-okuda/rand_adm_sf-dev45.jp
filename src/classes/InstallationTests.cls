@@ -536,6 +536,7 @@ private class InstallationTests {
         cdl.Visibility = 'AllUsers';
         cdl.LinkedEntityId = ip.Id;
         Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
         insert cdl;
         Test.stopTest();
     }

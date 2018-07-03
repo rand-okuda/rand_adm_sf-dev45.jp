@@ -367,7 +367,6 @@ AND(
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
         <valueSet>
-            <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
