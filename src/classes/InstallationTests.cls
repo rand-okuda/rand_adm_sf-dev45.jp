@@ -518,8 +518,33 @@ private class InstallationTests {
     
     @isTest
     static void InstallTest210() {
-        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.StampPredict
+        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.StampPredict & Einstein_Helper
         System.debug('###InstallTest210');
+        User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
+        createEqDatas(1);
+        createIpDatas(1);
+        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
+        ContentVersion cv = new ContentVersion();
+        cv.Title = 'XXX';
+        cv.VersionData = Blob.valueOf('DummyString');
+        cv.PathOnClient = '/' + cv.Title + '.png';
+        insert cv;
+        ContentDocument cd = [SELECT Id, Title FROM ContentDocument WHERE Title=:cv.Title];
+        ContentDocumentLink cdl = new ContentDocumentLink();
+        cdl.ContentDocumentId = cd.Id;
+        cdl.ShareType = 'V';
+        cdl.Visibility = 'AllUsers';
+        cdl.LinkedEntityId = ip.Id;
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
+        insert cdl;
+        Test.stopTest();
+    }
+    
+    @isTest
+    static void InstallTest211() {
+        // ContentDocumentLink_Logic.getImageUrlFromCDLink
+        System.debug('###InstallTest211');
         User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
         createEqDatas(1);
         createIpDatas(1);
@@ -542,63 +567,9 @@ private class InstallationTests {
     }
     
     @isTest
-    static void InstallTest211() {
-        // ContentDocumentLink_Logic.StampPredictCallOut
-        System.debug('###InstallTest211');
-        createEqDatas(1);
-        createIpDatas(1);
-        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
-        String Id = ip.Id;
-        String url = 'https://xxx.com/yyy/zzz/';
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
-        ContentDocumentLink_Logic.StampPredictCallOut(Id, url);
-        Test.stopTest();
-    }
-    
-    @isTest
     static void InstallTest212() {
-        // Einstein_Helper
+        // ContentDocumentLink_Logic.getImageUrlFromCDLink
         System.debug('###InstallTest212');
-        String Id = '000';
-        String url = 'https://xxx.com/yyy/zzz/';
-        Long datasetId = long.valueOf('000');
-        Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new Test_Einstein_HttpMockResponses());
-        Einstein_Helper.getModels(datasetId, 'image-detection');
-        Einstein_Helper.predictImageDetectionURL(Id, url);
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest213() {
-        // ContentDocumentLink_Logic.getImageUrlFromCDLink
-        System.debug('###InstallTest213');
-        User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
-        createEqDatas(1);
-        createIpDatas(1);
-        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
-        ContentVersion cv = new ContentVersion();
-        cv.Title = 'XXX';
-        cv.VersionData = Blob.valueOf('DummyString');
-        cv.PathOnClient = '/' + cv.Title + '.png';
-        insert cv;
-        ContentDocument cd = [SELECT Id, Title FROM ContentDocument WHERE Title=:cv.Title];
-        ContentDocumentLink cdl = new ContentDocumentLink();
-        cdl.ContentDocumentId = cd.Id;
-        cdl.ShareType = 'V';
-        cdl.Visibility = 'AllUsers';
-        cdl.LinkedEntityId = user01.Id;
-        insert cdl;
-        Test.startTest();
-        ContentDocumentLink_Logic.getImageUrlFromCDLink(user01.Id);
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest214() {
-        // ContentDocumentLink_Logic.getImageUrlFromCDLink
-        System.debug('###InstallTest214');
         User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
         User user02 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3702'];
         createEqDatas(1);
@@ -618,31 +589,6 @@ private class InstallationTests {
         insert cdl;
         Test.startTest();
         ContentDocumentLink_Logic.getImageUrlFromCDLink(user02.Id);
-        Test.stopTest();
-    }
-    
-    @isTest
-    static void InstallTest215() {
-        // ContentDocumentLink_Logic.getImageUrlFromCDLink
-        System.debug('###InstallTest215');
-        User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
-        createEqDatas(1);
-        createIpDatas(1);
-        Inspection__c ip = [SELECT Id FROM Inspection__c LIMIT 1];
-        ContentVersion cv = new ContentVersion();
-        cv.Title = String.valueOf(user01.Id).substring(0, 15);
-        cv.VersionData = Blob.valueOf('DummyString');
-        cv.PathOnClient = '/' + cv.Title + '.png';
-        insert cv;
-        ContentDocument cd = [SELECT Id, Title FROM ContentDocument WHERE Title=:cv.Title];
-        ContentDocumentLink cdl = new ContentDocumentLink();
-        cdl.ContentDocumentId = cd.Id;
-        cdl.ShareType = 'V';
-        cdl.Visibility = 'AllUsers';
-        cdl.LinkedEntityId = user01.Id;
-        insert cdl;
-        Test.startTest();
-        ContentDocumentLink_Logic.getImageUrlFromCDLink(user01.Id);
         Test.stopTest();
     }
     
