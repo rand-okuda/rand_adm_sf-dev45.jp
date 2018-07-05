@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Lightning アプリケーションビルダー による作成</description>
+    <flexiPage>InspectionPage</flexiPage>
+    <label>機器点検</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom48: Trophy</motif>
+</CustomTab>

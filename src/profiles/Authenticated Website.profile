@@ -11,7 +11,7 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
-        <application>QR_vs_Chatter</application>
+        <application>QR_AI_Inspection</application>
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
@@ -91,6 +91,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ContentVersionLogic</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>EinsteinWhopperTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -2013,6 +2017,10 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>InspectionTab</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>InspectionTableEditLEX</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
@@ -2031,10 +2039,6 @@
     <tabVisibilities>
         <tab>Playground</tab>
         <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Tab</tab>
-        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Account</tab>

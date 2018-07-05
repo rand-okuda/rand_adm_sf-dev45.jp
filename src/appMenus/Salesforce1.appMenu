@@ -5,7 +5,7 @@
         <type>StandardAppMenuItem</type>
     </appMenuItems>
     <appMenuItems>
-        <name>Tab</name>
+        <name>InspectionTab</name>
         <type>CustomTab</type>
     </appMenuItems>
     <appMenuItems>
