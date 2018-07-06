@@ -32,4 +32,5 @@ public class Einstein_JWT {
         String output = encodingUtil.base64Encode(input);        output = output.replace('+', '-');        output = output.replace('/', '_');        while ( output.endsWith('=')){            output = output.subString(0,output.length()-1);        }
         return output;
     }
+
 }

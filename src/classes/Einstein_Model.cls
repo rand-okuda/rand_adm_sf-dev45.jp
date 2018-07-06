@@ -26,10 +26,10 @@ public class Einstein_Model {
     public Integer datasetVersionId {get; set;}
     @AuraEnabled
     public String modelType {get; set;}
-    @AuraEnabled
+/*    @AuraEnabled
     public Einstein_TrainParams trainParams {get; set;}
     @AuraEnabled
     public Einstein_TrainStats trainStats {get; set;}
-    @AuraEnabled
+*/    @AuraEnabled
     public String type {get; set;}
 }

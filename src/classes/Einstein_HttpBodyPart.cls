@@ -7,10 +7,10 @@ public virtual class Einstein_HttpBodyPart {
     private final static string Boundary = '1ff13444ed8140c7a32fc4e6451aa76d';
 
 
-    public static String getBoundary() {
+/*    public static String getBoundary() {
         return Boundary;
     }
-
+*/
 
     /**
      *  Returns the request's content type for multipart/form-data requests.
@@ -108,7 +108,7 @@ public virtual class Einstein_HttpBodyPart {
   /**
      *  Write a key-value pair to the form's body for a blob.
      */
-    public static string WriteBlobBodyParameter(string key, string file64, string fileName) {
+/*    public static string WriteBlobBodyParameter(string key, string file64, string fileName) {
 
         String mimeType = resolveMimeType(fileName);
 
@@ -167,8 +167,8 @@ public virtual class Einstein_HttpBodyPart {
         content += WriteBoundary(ending);
         return content;
     }
-
-    private static String resolveMimeType(String fileName) {
+*/
+/*    private static String resolveMimeType(String fileName) {
         String fileType = fileName.substringAfterLast('.');
         String mimeType = 'image/png'; // fallback value
         if (fileType.equalsIgnoreCase('png')) {
@@ -182,7 +182,7 @@ public virtual class Einstein_HttpBodyPart {
         }
         return mimeType;
     }
-
+*/
     /**
      *  Helper enum indicating how a file's base64 padding was replaced.
      */

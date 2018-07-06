@@ -47,13 +47,13 @@ public class Einstein_PredictionService {
     * @param typeEnum
     * An Enum of type Einstein_PredictionService.Types which defines the type of prediction (image, image-multi-model, sentiment or intent).
     */
-    public Einstein_PredictionService(String bearerToken, Einstein_PredictionService.Types typeEnum) {
+/*    public Einstein_PredictionService(String bearerToken, Einstein_PredictionService.Types typeEnum) {
         this.bearerToken = bearerToken;
         this.typeEnum = typeEnum;
         this.baseUrl = resolveBaseUrl();
         this.typeString = resolveType();
     }
-
+*/
     /**
     * Creates a new dataset with data from a remote file (async call).
     * @param url
@@ -61,7 +61,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_Dataset
     */
-    public Einstein_Dataset createDatasetFromUrlAsync(String url) {
+/*    public Einstein_Dataset createDatasetFromUrlAsync(String url) {
         System.debug('Starting createDatasetFromUrlAsync call from URL ' + url + ' for type ' + typeString + '.');
         Einstein_HttpBodyPartDatasetUrl parts = new Einstein_HttpBodyPartDatasetUrl(url, typeString);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/datasets/upload', parts.build());
@@ -80,7 +80,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Creates a new dataset with data from a remote file (sync call).
     * @param url
@@ -88,7 +88,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_Dataset
     */
-    public Einstein_Dataset createDatasetFromUrlSync(String url) {
+/*    public Einstein_Dataset createDatasetFromUrlSync(String url) {
         System.debug('Starting createDatasetFromUrlSync call from URL ' + url + ' for type ' + typeString + '.');
         Einstein_HttpBodyPartDatasetUrl parts = new Einstein_HttpBodyPartDatasetUrl(url, typeString);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/datasets/upload/sync', parts.build());
@@ -107,7 +107,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Gets an existing Einstein_Dataset.
     * @param id
@@ -115,7 +115,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_Dataset
     */
-    public Einstein_Dataset getDataset(Long id) {
+/*    public Einstein_Dataset getDataset(Long id) {
         if (id==0) {
             throw new Einstein_NoValuesException('datasetId');
         }
@@ -135,16 +135,16 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Gets the globally, by Salesforce provided, datasets.
     * @return
     * An array of type Einstein_Dataset
     */
-    public Einstein_Dataset[] getGlobalDatasets() {
+/*    public Einstein_Dataset[] getGlobalDatasets() {
         return getDatasets(25, 0, Einstein_Dataset.Types.ALL, true);
     }
-
+*/
     /**
     * Gets all Einstein_Datasets.
     * @return
@@ -198,7 +198,7 @@ public class Einstein_PredictionService {
     * @return
     * True if the deletion was successful.
     */
-    public boolean deleteDataset(Long datasetId) {
+/*    public boolean deleteDataset(Long datasetId) {
         System.debug('Starting deleteDataset call');
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/datasets/' + datasetId);
         client.isDelete(true);
@@ -215,7 +215,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return false;
     }
-
+*/
     /**
     * Adds new image examples for the vision training.
     * @param datasetId
@@ -229,7 +229,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_Example
     */
-    public Einstein_Example createExample(Long datasetId, String name, Long labelId, Blob fileBlob) {
+/*    public Einstein_Example createExample(Long datasetId, String name, Long labelId, Blob fileBlob) {
         System.debug('Starting createExample call from blob');
         Einstein_HttpBodyPartExample parts = new Einstein_HttpBodyPartExample(name, labelId, EncodingUtil.base64Encode(fileBlob));
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/datasets/' + datasetId + '/examples', parts.build());
@@ -248,7 +248,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Adds new examples for the prediction training via a remote file.
     * @param datasetId
@@ -258,7 +258,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_Dataset
     */
-    public Einstein_Dataset createExamplesFromUrl(Long datasetId, String url) {
+/*    public Einstein_Dataset createExamplesFromUrl(Long datasetId, String url) {
         System.debug('Starting createExamplesFromUrl call from URL ' + url);
         Einstein_HttpBodyPartDatasetUrl parts = new Einstein_HttpBodyPartDatasetUrl(url, this.typeString);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/datasets/' + datasetId + '/upload', parts.build());
@@ -277,7 +277,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Adds new image examples for model feedback to vision training.
     * @param name
@@ -291,7 +291,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_Example
     */
-    public Einstein_Example createFeedbackImageExample(String name, String expectedLabel, String modelId, Blob fileBlob) {
+/*    public Einstein_Example createFeedbackImageExample(String name, String expectedLabel, String modelId, Blob fileBlob) {
         System.debug('Starting createFeedbackImageExample call from blob');
         Einstein_HttpBodyPartFeedbackExample parts = new Einstein_HttpBodyPartFeedbackExample(name, expectedLabel, modelId, EncodingUtil.base64Encode(fileBlob), Einstein_HttpBodyPartFeedbackExample.Types.BASE64);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/feedback', parts.build());
@@ -310,7 +310,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Adds new text for model feedback to language training.
     * @param name
@@ -324,7 +324,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_Example
     */
-    public Einstein_Example createFeedbackLanguageExample(String expectedLabel, String modelId, String text) {
+/*    public Einstein_Example createFeedbackLanguageExample(String expectedLabel, String modelId, String text) {
         System.debug('Starting createFeedbackLanguageExample call from text');
         Einstein_HttpBodyPartFeedbackExample parts = new Einstein_HttpBodyPartFeedbackExample('', expectedLabel, modelId, text, Einstein_HttpBodyPartFeedbackExample.Types.DOCUMENT);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/feedback', parts.build());
@@ -343,7 +343,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Gets an array of all Einstein_Examples that are associated with the given dataset id.
     * @param datasetId
@@ -351,10 +351,10 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_Example
     */
-    public Einstein_Example[] getExamples(Long datasetId) {
+/*    public Einstein_Example[] getExamples(Long datasetId) {
         return getExamples(datasetId, 25, 0, Einstein_Example.Types.ALL);
     }
-
+*/
     /**
     * Gets an array of all Einstein_Examples that are associated with the given dataset id.
     * @param datasetId
@@ -368,7 +368,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_Example
     */
-    public Einstein_Example[] getExamples(Long datasetId, Integer count, Integer offset, Einstein_Example.Types typeEnum) {
+/*    public Einstein_Example[] getExamples(Long datasetId, Integer count, Integer offset, Einstein_Example.Types typeEnum) {
         System.debug('Starting getExamples call');
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/datasets/' + datasetId + '/examples?offset=' + offset + '&count='+ count + resolveEinsteinExampleType(typeEnum));
         System.debug('Target URL is ' + client.getUrl());
@@ -385,7 +385,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Starts the training of a Einstein_Dataset.
     * @param datasetId
@@ -401,7 +401,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_Model
     */
-    public Einstein_Model trainDataset(Long datasetId, String name, Integer epochs, Decimal learningRate, Einstein_TrainParams trainParams) {
+/*    public Einstein_Model trainDataset(Long datasetId, String name, Integer epochs, Decimal learningRate, Einstein_TrainParams trainParams) {
         System.debug('Starting trainDataset call with name ' + name);
         Einstein_HttpBodyPartTraining parts = new Einstein_HttpBodyPartTraining(datasetId, name, epochs, learningRate, trainParams);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/train', parts.build());
@@ -419,7 +419,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Starts the retraining of a Einstein_Dataset.
     * @param modelId
@@ -433,7 +433,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_Model
     */
-    public Einstein_Model retrainDataset(String modelId, Integer epochs, Decimal learningRate, Einstein_TrainParams trainParams) {
+/*    public Einstein_Model retrainDataset(String modelId, Integer epochs, Decimal learningRate, Einstein_TrainParams trainParams) {
         System.debug('Starting retrainDataset call with name ' + modelId);
         Einstein_HttpBodyPartRetraining parts = new Einstein_HttpBodyPartRetraining(modelId, epochs, learningRate, trainParams);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/retrain', parts.build());
@@ -451,7 +451,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Fetches the model for the given id.
     * @param modelId
@@ -459,7 +459,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_Model
     */
-    public Einstein_Model getModel(String modelId) {
+/*    public Einstein_Model getModel(String modelId) {
         System.debug('Starting getModel call with parameter ' + modelId);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/train/' + modelId);
         System.debug('Target URL is ' + client.getUrl());
@@ -476,7 +476,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Gets the learning curve of a model.
     * @param modelId
@@ -484,7 +484,7 @@ public class Einstein_PredictionService {
     * @return
     * The JSON response as raw String
     */
-    public String getModelLearningCurve(String modelId) {
+/*    public String getModelLearningCurve(String modelId) {
         System.debug('Starting getModelLearningCurve call with parameter ' + modelId);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/models/' + modelId + '/lc');
         System.debug('Target URL is ' + client.getUrl());
@@ -501,7 +501,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Gets the metrics of a model.
     * @param modelId
@@ -509,7 +509,7 @@ public class Einstein_PredictionService {
     * @return
     * The JSON response as raw String
     */
-    public String getModelMetrics(String modelId) {
+/*    public String getModelMetrics(String modelId) {
         System.debug('Starting getModelMetrics call with parameter ' + modelId);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/models/' + modelId);
         System.debug('Target URL is ' + client.getUrl());
@@ -527,7 +527,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Gets all trained Einstein_Models that are trained for the given Einstein_Dataset id.
     * @param datasetId
@@ -566,7 +566,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_PredictionResult.
     */
-    public Einstein_PredictionResult predictIntent(String modelId, String text, Integer numResults, String sampleId) {
+/*    public Einstein_PredictionResult predictIntent(String modelId, String text, Integer numResults, String sampleId) {
         System.debug('Starting predict intent call with model ' + modelId);
         Einstein_HttpBodyPartPrediction parts = new Einstein_HttpBodyPartPrediction(modelId, text, numResults, sampleId, Einstein_HttpBodyPartPrediction.Types.DOCUMENT);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/intent', parts.build());
@@ -584,7 +584,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Predicts the sentiment of the given text to a trained model.
     * @param modelId
@@ -598,7 +598,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_PredictionResult.
     */
-    public Einstein_PredictionResult predictSentiment(String modelId, String text, Integer numResults, String sampleId) {
+/*    public Einstein_PredictionResult predictSentiment(String modelId, String text, Integer numResults, String sampleId) {
         System.debug('Starting predict sentiment call with model ' + modelId);
         Einstein_HttpBodyPartPrediction parts = new Einstein_HttpBodyPartPrediction(modelId, text, numResults, sampleId, Einstein_HttpBodyPartPrediction.Types.DOCUMENT);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/sentiment', parts.build());
@@ -616,7 +616,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Detects objects in the given image in Base64 format based a trained model.
     * @param model
@@ -630,7 +630,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_PredictionResult.
     */
-    public Einstein_PredictionResult detectImageBase64(String modelId, String base64, Integer numResults, String sampleId) {
+/*    public Einstein_PredictionResult detectImageBase64(String modelId, String base64, Integer numResults, String sampleId) {
         System.debug('Starting detect call with model ' + modelId + ' for base64');
         Einstein_HttpBodyPartPrediction parts = new Einstein_HttpBodyPartPrediction(modelId, base64, numResults, sampleId, Einstein_HttpBodyPartPrediction.Types.BASE64);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/detect', parts.build());
@@ -648,7 +648,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Detects objects in the given image in Base64 format based a trained model.
     * @param model
@@ -662,7 +662,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_PredictionResult.
     */
-    public Einstein_PredictionResult detectImageBlob(String modelId, Blob fileBlob, Integer numResults, String sampleId) {
+/*    public Einstein_PredictionResult detectImageBlob(String modelId, Blob fileBlob, Integer numResults, String sampleId) {
         System.debug('Starting detect call with model ' + modelId + ' for blob');
         Einstein_HttpBodyPartPrediction parts = new Einstein_HttpBodyPartPrediction(modelId, EncodingUtil.base64Encode(fileBlob), numResults, sampleId, Einstein_HttpBodyPartPrediction.Types.BASE64);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/detect', parts.build());
@@ -680,7 +680,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Detects objects in the given image in Base64 format based a trained model.
     * @param model
@@ -726,7 +726,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_PredictionResult.
     */
-    public Einstein_PredictionResult predictImageBase64(String modelId, String base64, Integer numResults, String sampleId) {
+/*    public Einstein_PredictionResult predictImageBase64(String modelId, String base64, Integer numResults, String sampleId) {
         System.debug('Starting predict call with model ' + modelId + ' for base64');
         Einstein_HttpBodyPartPrediction parts = new Einstein_HttpBodyPartPrediction(modelId, base64, numResults, sampleId, Einstein_HttpBodyPartPrediction.Types.BASE64);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/predict', parts.build());
@@ -744,7 +744,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Predicts the association of the given image as Blob to a trained model.
     * @param modelId
@@ -758,7 +758,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_PredictionResult.
     */
-    public Einstein_PredictionResult predictImageBlob(String modelId, Blob fileBlob, Integer numResults, String sampleId) {
+/*    public Einstein_PredictionResult predictImageBlob(String modelId, Blob fileBlob, Integer numResults, String sampleId) {
         System.debug('Starting predict call with model ' + modelId + ' for blob');
         Einstein_HttpBodyPartPrediction parts = new Einstein_HttpBodyPartPrediction(modelId, EncodingUtil.base64Encode(fileBlob), numResults, sampleId, Einstein_HttpBodyPartPrediction.Types.BASE64);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/predict', parts.build());
@@ -776,7 +776,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Predicts the association of the given image on a remote url to a trained model.
     * @param modelId
@@ -790,7 +790,7 @@ public class Einstein_PredictionService {
     * @return
     * An object of type Einstein_PredictionResult.
     */
-    public Einstein_PredictionResult predictImageUrl(String modelId, String url, Integer numResults, String sampleId) {
+/*    public Einstein_PredictionResult predictImageUrl(String modelId, String url, Integer numResults, String sampleId) {
         System.debug('Starting predict call with model ' + modelId + ' for url');
         Einstein_HttpBodyPartPrediction parts = new Einstein_HttpBodyPartPrediction(modelId, url, numResults, sampleId, Einstein_HttpBodyPartPrediction.Types.URL);
         Einstein_HttpClient client = new Einstein_HttpClient(this, '/predict', parts.build());
@@ -808,13 +808,13 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     * Fetches data about the API usage of the authenticated PredictionService.
     * @return
     * An array of all Einstein_ApiUsage elements.
     */
-    public Einstein_ApiUsage[] getApiUsage() {
+/*    public Einstein_ApiUsage[] getApiUsage() {
         System.debug('Starting getApiUsage call');
         Einstein_HttpClient client = new Einstein_HttpClient(this, API_USAGE);
         System.debug('Target URL is ' + client.getUrl());
@@ -831,7 +831,7 @@ public class Einstein_PredictionService {
         handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
-
+*/
     /**
     *
     * @return
@@ -909,7 +909,7 @@ public class Einstein_PredictionService {
         }
         return '';
     }
-
+/*
     private String resolveEinsteinExampleType(Einstein_Example.Types typeEnum) {
         if (typeEnum == Einstein_Example.Types.ALL) {
             return '&type=all';
@@ -920,7 +920,7 @@ public class Einstein_PredictionService {
         }
         return '';
     }
-
+*/
 
     /**
     *

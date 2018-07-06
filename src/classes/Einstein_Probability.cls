@@ -4,7 +4,7 @@ public class Einstein_Probability {
     public String label {get; set;}
     @AuraEnabled
     public Double probability {get; set;}
-
+/*
     @AuraEnabled
     public BoundingBox boundingBox {get; set;}
 
@@ -18,5 +18,5 @@ public class Einstein_Probability {
         @AuraEnabled
         public Integer maxY {get; set;}
     }
-
+*/
 }

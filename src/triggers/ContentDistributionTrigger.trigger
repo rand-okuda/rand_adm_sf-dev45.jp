@@ -9,9 +9,9 @@ trigger ContentDistributionTrigger on ContentDistribution (after update) {
 			CDs.add(CD.Id);
 		}
 	}
-
+/*
 	if (!System.isFuture()){
 		Einstein_PlaygroundController.handleCDV(CDs);
 	}
-
+*/
 }
