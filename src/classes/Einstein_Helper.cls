@@ -26,6 +26,14 @@ public class Einstein_Helper {
             for ( Integer i=0; i<datasetsReturn.size(); i++ ){
                 System.debug('*** datasetsReturn.Id ' + datasetsReturn[i].Id);
                 System.debug('*** datasetsReturn.Name ' + datasetsReturn[i].Name);
+                System.debug('*** datasetsReturn.createdAt ' + datasetsReturn[i].createdAt);
+                System.debug('*** datasetsReturn.updatedAt ' + datasetsReturn[i].updatedAt);
+                System.debug('*** datasetsReturn.labelSummary ' + datasetsReturn[i].labelSummary);
+                System.debug('*** datasetsReturn.totalExamples ' + datasetsReturn[i].totalExamples);
+                System.debug('*** datasetsReturn.totalLabels ' + datasetsReturn[i].totalLabels);
+                System.debug('*** datasetsReturn.available ' + datasetsReturn[i].available);
+                System.debug('*** datasetsReturn.statusMsg ' + datasetsReturn[i].statusMsg);
+                System.debug('*** datasetsReturn.type ' + datasetsReturn[i].type);
             }
         }
         System.debug('*** datasetsReturn ' + datasetsReturn);
@@ -45,6 +53,17 @@ public class Einstein_Helper {
                 System.debug('*** models.modelId ' + models[i].modelId);
                 System.debug('*** models.name ' + models[i].name);
                 System.debug('*** models.modelType ' + models[i].modelType);
+                System.debug('*** models.datasetId ' + models[i].datasetId);
+                System.debug('*** models.status ' + models[i].status);
+                System.debug('*** models.progress ' + models[i].progress);
+                System.debug('*** models.createdAt ' + models[i].createdAt);
+                System.debug('*** models.updatedAt ' + models[i].updatedAt);
+                System.debug('*** models.learningRate ' + models[i].learningRate);
+                System.debug('*** models.epochs ' + models[i].epochs);
+                System.debug('*** models.queuePosition ' + models[i].queuePosition);
+                System.debug('*** models.failureMsg ' + models[i].failureMsg);
+                System.debug('*** models.datasetVersionId ' + models[i].datasetVersionId);
+                System.debug('*** models.type ' + models[i].type);
             }
         }
         System.debug('*** models ' + models);
