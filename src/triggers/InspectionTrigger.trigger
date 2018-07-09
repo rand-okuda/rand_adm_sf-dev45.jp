@@ -11,6 +11,15 @@ trigger InspectionTrigger on Inspection__c (before insert, after insert, after u
 
     if(Trigger.isAfter && Trigger.isInsert){
         System.debug('%%%InspectionTrigger isAfter isInsert');
+        List<Inspection__c> inspectionList = new List<Inspection__c>();
+        for(Inspection__c ip :Trigger.new){
+            inspectionList.add(ip);
+        }
+        InspectionLogic.QRcodeImageToGet(inspectionList);                
+    }
+    
+    if(Trigger.isAfter && Trigger.isInsert){
+        System.debug('%%%InspectionTrigger isAfter isInsert');
         List<Inspection__c> ChangeScheduleInspectionList = new List<Inspection__c>();
         for(Inspection__c ipNew :Trigger.new){
             if(ipNew.InspectionDateTime__c != null && ipNew.Worker__c != null){
