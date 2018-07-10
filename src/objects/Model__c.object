@@ -75,16 +75,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>ExteriorURL__c</fullName>
-        <externalId>false</externalId>
-        <label>外観URL</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Url</type>
-    </fields>
-    <fields>
         <fullName>Manufacturer__c</fullName>
         <externalId>false</externalId>
         <label>施設開発会社</label>

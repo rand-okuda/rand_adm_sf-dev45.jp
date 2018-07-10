@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
-        <application>Einstein_Demo</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
-        <application>Einstein_Vision</application>
-        <default>false</default>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
         <application>QR_AI_Inspection</application>
         <default>false</default>
         <visible>false</visible>
@@ -86,11 +76,15 @@
         <visible>false</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>ContentDocumentLink_Logic</apexClass>
+        <apexClass>ContentDocumentLinkLogic</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ContentVersionLogic</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>EinsteinHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -111,10 +105,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Einstein_Example</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Einstein_Helper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1378,11 +1368,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Model__c.CheckSpan__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Model__c.ExteriorURL__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

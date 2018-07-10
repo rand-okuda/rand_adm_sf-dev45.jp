@@ -9,10 +9,6 @@
         <name>CheckSpan__c</name>
     </fields>
     <fields>
-        <label><!-- 外観URL --></label>
-        <name>ExteriorURL__c</name>
-    </fields>
-    <fields>
         <label><!-- 施設開発会社 --></label>
         <name>Manufacturer__c</name>
     </fields>
