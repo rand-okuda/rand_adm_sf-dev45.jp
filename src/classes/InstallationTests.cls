@@ -518,7 +518,7 @@ private class InstallationTests {
     
     @isTest
     static void InstallTest210() {
-        // ContentDocumentLink_Trigger & ContentDocumentLink_Logic.StampPredict & Einstein_Helper
+        // ContentDocumentLinkTrigger & ContentDocumentLinkLogic.StampPredict & Einstein_Helper
         System.debug('###InstallTest210');
         User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
         createEqDatas(1);
@@ -543,7 +543,7 @@ private class InstallationTests {
     
     @isTest
     static void InstallTest211() {
-        // ContentDocumentLink_Logic.getImageUrlFromCDLink
+        // ContentDocumentLinkLogic.getImageUrlFromCDLink
         System.debug('###InstallTest211');
         User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
         createEqDatas(1);
@@ -568,7 +568,7 @@ private class InstallationTests {
     
     @isTest
     static void InstallTest212() {
-        // ContentDocumentLink_Logic.getImageUrlFromCDLink
+        // ContentDocumentLinkLogic.getImageUrlFromCDLink
         System.debug('###InstallTest212');
         User user01 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3701'];
         User user02 = [SELECT Id, Alias FROM User WHERE Alias = 'rdok3702'];
@@ -588,7 +588,7 @@ private class InstallationTests {
         cdl.LinkedEntityId = user01.Id;
         insert cdl;
         Test.startTest();
-        ContentDocumentLink_Logic.getImageUrlFromCDLink(user02.Id);
+        ContentDocumentLinkLogic.getImageUrlFromCDLink(user02.Id);
         Test.stopTest();
     }
     
