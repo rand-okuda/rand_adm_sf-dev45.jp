@@ -279,6 +279,7 @@ public with sharing class InspectionExtension {
                 imageAtt = existAtt;
                 renderQR = true;
                 System.debug('***imageAtt(Exist) ' +imageAtt);
+                System.debug('*** renderQR ' + renderQR);
             }else{
                 Integer existCvCount = [SELECT COUNT() FROM ContentVersion WHERE Title = :ipId15 AND IsMajorVersion = true];
                 if(existCvCount > 0){
@@ -292,11 +293,10 @@ public with sharing class InspectionExtension {
                     imageAtt = att;
                     renderQR = true;
                     System.debug('***imageAtt(New) ' +imageAtt);                    
+                    System.debug('*** renderQR ' + renderQR);
                 }else{
                     System.debug('***imageVc(not found) ' +ipId15);
-                    List<Inspection__c> ipList = new List<Inspection__c>();
-                    ipList.add(ip);
-                    InspectionLogic.QRcodeImageToGet(ipList);
+                    System.debug('*** renderQR ' + renderQR);
                 }
             }
         }
