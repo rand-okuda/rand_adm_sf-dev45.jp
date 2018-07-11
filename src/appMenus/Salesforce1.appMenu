@@ -5,10 +5,6 @@
         <type>StandardAppMenuItem</type>
     </appMenuItems>
     <appMenuItems>
-        <name>InspectionTab</name>
-        <type>CustomTab</type>
-    </appMenuItems>
-    <appMenuItems>
         <name>InspectionTableEditLEX</name>
         <type>CustomTab</type>
     </appMenuItems>
