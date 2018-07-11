@@ -2,7 +2,7 @@
 global class QueueableGoogleCallMock implements HttpCalloutMock{
 
     public QueueableGoogleCallMock(){
-        System.debug('###QueueableGoogleCallMock');
+        System.debug('@### QueueableGoogleCallMock()');
     }
 
     global HTTPResponse respond(HTTPRequest request) {
@@ -11,7 +11,7 @@ global class QueueableGoogleCallMock implements HttpCalloutMock{
         response.setStatus('OK');
         Blob bodyBlob = Blob.valueof('DummyString');
         response.setBodyAsBlob(bodyBlob);
-        System.debug('###response ' + response);
+        System.debug('### response ' + response);
         return response; 
     }
 

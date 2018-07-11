@@ -6,7 +6,7 @@ global class QueueableZXingCallMock implements HttpCalloutMock{
     public String bodyString;
 
     public QueueableZXingCallMock(String recordId, Integer statusCode, String bodyString){
-        System.debug('###ueueableZXingCallMock');
+        System.debug('### QueueableZXingCallMock()');
         this.recordId = recordId;
         this.statusCode = statusCode;
         this.bodyString = bodyString;
@@ -21,7 +21,10 @@ global class QueueableZXingCallMock implements HttpCalloutMock{
         Body = Body + recordId;
         Body = Body + '</pre></td></tr><tr><td>Raw bytes';
         response.setBody(Body);
-        System.debug('###response ' + response);
+        System.debug('### response ' + response);
+        System.debug('### recordId ' + recordId);
+        System.debug('### statusCode ' + statusCode);
+        System.debug('### bodyString ' + bodyString);
         return response; 
     }
 
