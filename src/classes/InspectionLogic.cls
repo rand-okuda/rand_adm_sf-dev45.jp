@@ -39,7 +39,7 @@ public class InspectionLogic {
             if(response.getStatusCode() == 200 && response.getStatus() == 'OK'){
                 ContentVersion cv = new ContentVersion();
                 cv.VersionData = response.getBodyAsBlob();
-                cv.PathOnClient = '/' + cv.Title + '.png';
+                cv.PathOnClient = '/QR.png';
                 if(ip.Id != null){
                     cv.Title = String.valueOf(ip.Id).substring(0, 15);
                 }
