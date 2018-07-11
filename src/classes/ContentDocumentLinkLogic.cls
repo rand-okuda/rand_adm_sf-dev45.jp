@@ -54,7 +54,7 @@ public class ContentDocumentLinkLogic {
         if(!cdlList.isEmpty()){
             String excludeTitle = String.valueOf(recordId).substring(0, 15);
             System.debug('*** excludeTitle ' + excludeTitle);
-            List<ContentDocument> cdList = [SELECT Id, LatestPublishedVersionId, Title, FileType, FileExtension FROM ContentDocument WHERE Id=:cdlList[0].ContentDocumentId AND Title != :excludeTitle AND FileType IN ('PNG','JPG','JPEG') AND FileExtension IN ('png','jpg','jpeg')];
+            List<ContentDocument> cdList = [SELECT Id, LatestPublishedVersionId, Title, FileType, FileExtension FROM ContentDocument WHERE Id=:cdlList[0].ContentDocumentId AND Title != :excludeTitle AND FileType IN ('PNG','JPG','JPEG')];
             if(!cdList.isEmpty()){
                 System.debug('*** cdList[0].Title ' + cdList[0].Title);
                 List<ContentVersion> cvList = [SELECT Id, IsLatest FROM ContentVersion WHERE Id=:cdList[0].LatestPublishedVersionId AND IsLatest=true];
