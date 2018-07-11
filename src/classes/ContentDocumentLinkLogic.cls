@@ -59,12 +59,7 @@ public class ContentDocumentLinkLogic {
                 System.debug('*** cdList[0].Title ' + cdList[0].Title);
                 List<ContentVersion> cvList = [SELECT Id, IsLatest FROM ContentVersion WHERE Id=:cdList[0].LatestPublishedVersionId AND IsLatest=true];
                 if (!cvList.isEmpty()) {
-                    ContentDistribution cDist = new ContentDistribution();
-                    cDist.Name = 'Auto Create By Trigger';
-                    cDist.ContentVersionId = cvList[0].Id;
-                    cDist.PreferencesNotifyOnVisit = false;
                     List<ContentDistribution> existCDistList = [SELECT Id, ContentVersionId, ContentDownloadUrl FROM ContentDistribution WHERE ContentVersionId = :cvList[0].Id];
-                    System.debug('*** existCDistList[0] ' + existCDistList[0]);
                     if(!existCDistList.isEmpty()){
                         System.debug('*** existCDistList[0].ContentDownloadUrl ' + existCDistList[0].ContentDownloadUrl);
                         return existCDistList[0].ContentDownloadUrl;
