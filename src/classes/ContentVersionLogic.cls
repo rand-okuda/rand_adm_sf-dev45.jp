@@ -44,7 +44,7 @@ public class ContentVersionLogic {
                 response = http.send(request);
             }catch(System.Exception e){
                 System.debug('***Exception ' + e.getMessage());
-                responseFiBody = 'QRコードの解析に問題 ' + e.getMessage() + ' が発生しました。\n\rファイル名変更するとQRコードの解析を再実行します。';
+                responseFiBody += 'QRコードの解析に問題 ' + e.getMessage() + ' が発生しました。';
             }
             System.debug('***getStatusCode() ' + response.getStatusCode());
             System.debug('***getStatus() ' + response.getStatus());
@@ -67,7 +67,7 @@ public class ContentVersionLogic {
             FeedItem responseFi = new FeedItem();
             responseFi.ParentId = cDist.ContentVersion.OwnerId;
             responseFi.RelatedRecordId = cDist.ContentVersionId;
-            if(response.getStatusCode() == 200 && resBody.contains('Decode Succeeded' )){
+            if(response.getStatusCode() == 200 && resBody.contains('Decode Succeeded')){
                 Integer ipCount = [SELECT COUNT() FROM Inspection__c WHERE Id = :decodeQR];
                 if(ipCount > 0){
                     Inspection__c ip = [SELECT Id FROM Inspection__c WHERE Id = :decodeQR];
@@ -87,8 +87,11 @@ public class ContentVersionLogic {
                 if(response.getStatusCode() == 400 && resBody.contains('No Barcode Found')){
                     responseFiBody += 'QRコードを解析出来ませんでした。\n\r画像を再取り込みしてください。';
                 }
+                responseFiBody += '\n\rQRコードの解析を再キューイングします。';
                 responseFi.Body = responseFiBody;
                 insert responseFi;
+                QueueableZXingCall queueableZXingCall = new QueueableZXingCall(cDist);
+                System.enqueueJob(queueableZXingCall);
             }
         }
     }
