@@ -79,19 +79,21 @@ public class ContentVersionLogic {
                     insert cdl;
                     System.debug('***cdl ' + cdl);
                 }else{
-                    responseFiBody += 'QRコードを解析出来ましたがデータと一致しませんでした。\n\r別の画像を取り込みしてください。';
+                    responseFiBody += 'QRコードを解析出来ましたがデータと一致しませんでした。\n\r別の点検表をスキャナー取り込みしてください。';
                     responseFi.Body = responseFiBody;
                     insert responseFi;
                 }
             }else{
                 if(response.getStatusCode() == 400 && resBody.contains('No Barcode Found')){
-                    responseFiBody += 'QRコードを解析出来ませんでした。\n\r画像を再取り込みしてください。';
+                    responseFiBody += 'QRコードを解析出来ませんでした。\n\r点検表を再度スキャナー取り込みしてください。';
                 }
                 responseFiBody += '\n\rQRコードの解析を再キューイングします。';
                 responseFi.Body = responseFiBody;
                 insert responseFi;
                 QueueableZXingCall queueableZXingCall = new QueueableZXingCall(cDist);
-                System.enqueueJob(queueableZXingCall);
+                if(!Test.isRunningTest()){
+                    System.enqueueJob(queueableZXingCall);
+                }
             }
         }
     }
