@@ -20,15 +20,15 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>LastInspection__c</field>
+                <behavior>Required</behavior>
+                <field>Equipment__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Equipment__c</field>
+                <behavior>Readonly</behavior>
+                <field>LastInspection__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -143,6 +143,11 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
+            <actionName>Edit</actionName>
+            <actionType>StandardButton</actionType>
+            <sortOrder>0</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
             <actionName>Inspection__c.TablePDFOutput</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>1</sortOrder>
@@ -156,11 +161,6 @@
             <actionName>Inspection__c.PhoneReport</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>3</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
-            <actionName>Edit</actionName>
-            <actionType>StandardButton</actionType>
-            <sortOrder>0</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>

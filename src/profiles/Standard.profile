@@ -88,6 +88,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>EinsteinWhopperGetAccessTokenMock</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>EinsteinWhopperTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>

@@ -20,15 +20,15 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>LastInspection__c</field>
+                <behavior>Required</behavior>
+                <field>Equipment__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Equipment__c</field>
+                <behavior>Readonly</behavior>
+                <field>LastInspection__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

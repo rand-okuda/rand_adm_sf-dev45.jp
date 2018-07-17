@@ -49,10 +49,10 @@
         <fields>Name</fields>
         <fields>WorkerName__c</fields>
         <fields>InspectionDateTime__c</fields>
-        <fields>Manufacturer__c</fields>
         <fields>ModelName__c</fields>
         <fields>AccountName__c</fields>
         <fields>InspectionCompleted__c</fields>
+        <fields>OUINConfirm__c</fields>
         <label>点検予実</label>
     </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
