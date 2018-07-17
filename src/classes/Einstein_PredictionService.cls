@@ -79,7 +79,7 @@ public class Einstein_PredictionService {
             System.debug('Datasets have been read.');
             return datasets;
         }
-        handleError(client.getStatusCode(), client.getResponseError());
+//        handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
 
@@ -104,7 +104,7 @@ public class Einstein_PredictionService {
             System.debug('Models have been read.');
             return models;
         }
-        handleError(client.getStatusCode(), client.getResponseError());
+//        handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
 
@@ -136,7 +136,7 @@ public class Einstein_PredictionService {
             System.debug('Image has been detected.');
             return predictions;
         }
-        handleError(client.getStatusCode(), client.getResponseError());
+//        handleError(client.getStatusCode(), client.getResponseError());
         return null;
     }
 
@@ -160,11 +160,11 @@ public class Einstein_PredictionService {
     *
     * @param message
     */
-    private void handleError(Integer statusCode, String message) {
-        httpStatusCode = statusCode;
-        httpErrorMessage = message;
-        System.debug(LoggingLevel.Error, 'Response finished with Error: ' + message + ' (status code: ' + statusCode + ')');
-    }
+//    private void handleError(Integer statusCode, String message) {
+//        httpStatusCode = statusCode;
+//        httpErrorMessage = message;
+//        System.debug(LoggingLevel.Error, 'Response finished with Error: ' + message + ' (status code: ' + statusCode + ')');
+//    }
 
     /**
     * Sets the Type of the Einstein_PredictionService
@@ -180,14 +180,14 @@ public class Einstein_PredictionService {
     private String resolveType() {
         if (this.typeEnum == Einstein_PredictionService.Types.IMAGE) {
             return 'image';
-        } else if (this.typeEnum == Einstein_PredictionService.Types.IMAGE_MULTI_LABEL) {
-            return 'image-multi-label';
+//        } else if (this.typeEnum == Einstein_PredictionService.Types.IMAGE_MULTI_LABEL) {
+//            return 'image-multi-label';
         } else if (this.typeEnum == Einstein_PredictionService.Types.IMAGE_DETECTION) {
             return 'image-detection';
-        } else if (this.typeEnum == Einstein_PredictionService.Types.SENTIMENT) {
-            return 'text-sentiment';
-        } else if (this.typeEnum == Einstein_PredictionService.Types.INTENT) {
-            return 'text-intent';
+//        } else if (this.typeEnum == Einstein_PredictionService.Types.SENTIMENT) {
+//            return 'text-sentiment';
+//        } else if (this.typeEnum == Einstein_PredictionService.Types.INTENT) {
+//            return 'text-intent';
         }
         return '';
     }
@@ -195,14 +195,14 @@ public class Einstein_PredictionService {
     private String resolveBaseUrl() {
         if (this.typeEnum == Einstein_PredictionService.Types.IMAGE) {
             return BASE_URL + '/vision';
-        } else if (this.typeEnum == Einstein_PredictionService.Types.IMAGE_MULTI_LABEL) {
-            return BASE_URL + '/vision';
+//        } else if (this.typeEnum == Einstein_PredictionService.Types.IMAGE_MULTI_LABEL) {
+//            return BASE_URL + '/vision';
         } else if (this.typeEnum == Einstein_PredictionService.Types.IMAGE_DETECTION) {
             return BASE_URL + '/vision';
-        } else if (this.typeEnum == Einstein_PredictionService.Types.SENTIMENT) {
-            return BASE_URL + '/language';
-        } else if (this.typeEnum == Einstein_PredictionService.Types.INTENT) {
-            return BASE_URL + '/language';
+//        } else if (this.typeEnum == Einstein_PredictionService.Types.SENTIMENT) {
+//            return BASE_URL + '/language';
+//        } else if (this.typeEnum == Einstein_PredictionService.Types.INTENT) {
+//            return BASE_URL + '/language';
         }
         return '';
     }
@@ -210,10 +210,10 @@ public class Einstein_PredictionService {
     private String resolveEinsteinDatasetType(Einstein_Dataset.Types typeEnum) {
         if (typeEnum == Einstein_Dataset.Types.ALL) {
             return '&type=all';
-        } else if (typeEnum == Einstein_Dataset.Types.FEEDBACK) {
-            return '&type=feedback';
-        } else if (typeEnum == Einstein_Dataset.Types.UPLOAD) {
-            return '&type=upload';
+//        } else if (typeEnum == Einstein_Dataset.Types.FEEDBACK) {
+//            return '&type=feedback';
+//        } else if (typeEnum == Einstein_Dataset.Types.UPLOAD) {
+//            return '&type=upload';
         }
         return '';
     }
