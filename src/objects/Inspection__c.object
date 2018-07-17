@@ -812,7 +812,7 @@ AND(
         <customTabListAdditionalFields>InspectionDateTime__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>InspectionCompleted__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Worker__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>PhoneReport__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OUINConfirm__c</customTabListAdditionalFields>
         <excludedStandardButtons>New</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
@@ -822,6 +822,7 @@ AND(
         <searchResultsAdditionalFields>InspectionDateTime__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>WorkerName__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>InspectionCompleted__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OUINConfirm__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
