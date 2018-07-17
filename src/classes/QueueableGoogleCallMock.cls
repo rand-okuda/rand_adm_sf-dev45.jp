@@ -2,7 +2,7 @@
 global class QueueableGoogleCallMock implements HttpCalloutMock{
 
     public QueueableGoogleCallMock(){
-        System.debug('@### QueueableGoogleCallMock()');
+        System.debug('### QueueableGoogleCallMock()');
     }
 
     global HTTPResponse respond(HTTPRequest request) {
