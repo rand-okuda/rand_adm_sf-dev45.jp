@@ -27,6 +27,11 @@ private class EinsteinWhopperTest {
         jwt.issue();
         Blob input = Blob.valueOf('XXX');
         jwt.base64URLencode(input);
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new EinsteinWhopperGetAccessTokenMock());
+        String tokenEndpoint = 'http://token.endpoint/tokenEndpoint';
+        Einstein_JWTBearerFlow.getAccessToken(tokenEndpoint, jwt);
+        Test.stopTest();
     }
     
     @isTest
@@ -41,5 +46,5 @@ private class EinsteinWhopperTest {
         Einstein_LabelSummary els = new Einstein_LabelSummary();
         els.labels = elList;
     }
-
+    
 }
