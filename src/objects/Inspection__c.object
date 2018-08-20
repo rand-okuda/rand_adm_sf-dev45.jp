@@ -607,8 +607,8 @@ AND(
         <columns>Equipment__c</columns>
         <columns>Worker__c</columns>
         <columns>InspectionDateTime__c</columns>
-        <columns>InspectionCompleted__c</columns>
         <columns>PhoneReport__c</columns>
+        <columns>OUINConfirm__c</columns>
         <columns>RECORDTYPE</columns>
         <filterScope>Everything</filterScope>
         <filters>

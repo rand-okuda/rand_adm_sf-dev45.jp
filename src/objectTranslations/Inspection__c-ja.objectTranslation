@@ -224,6 +224,10 @@
         <name>EditWorker</name>
     </quickActions>
     <quickActions>
+        <label><!-- 点検表Preview --></label>
+        <name>InspectionPdfPreview</name>
+    </quickActions>
+    <quickActions>
         <label><!-- 電話報告 --></label>
         <name>PhoneReport</name>
     </quickActions>

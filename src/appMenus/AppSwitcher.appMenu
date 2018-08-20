@@ -60,4 +60,8 @@
         <name>standard__LightningInstrumentation</name>
         <type>CustomApplication</type>
     </appMenuItems>
+    <appMenuItems>
+        <name>QR_AI_Inspection_LEX</name>
+        <type>CustomApplication</type>
+    </appMenuItems>
 </AppMenu>
