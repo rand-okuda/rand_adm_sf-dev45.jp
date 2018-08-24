@@ -5,7 +5,15 @@
         <type>StandardAppMenuItem</type>
     </appMenuItems>
     <appMenuItems>
+        <name>Events</name>
+        <type>StandardAppMenuItem</type>
+    </appMenuItems>
+    <appMenuItems>
         <name>InspectionTableEditLEX</name>
         <type>CustomTab</type>
+    </appMenuItems>
+    <appMenuItems>
+        <name>Search</name>
+        <type>StandardAppMenuItem</type>
     </appMenuItems>
 </AppMenu>

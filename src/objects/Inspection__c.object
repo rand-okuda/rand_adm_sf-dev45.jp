@@ -489,6 +489,7 @@ AND(
         <columns>NAME</columns>
         <columns>Worker__c</columns>
         <columns>InspectionDateTime__c</columns>
+        <columns>InspectionCompleted__c</columns>
         <columns>OUINConfirm__c</columns>
         <columns>RECORDTYPE</columns>
         <filterScope>Everything</filterScope>

@@ -2,6 +2,9 @@
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
     <flexiPageRegions>
         <componentInstances>
+            <componentName>home:eventContainer</componentName>
+        </componentInstances>
+        <componentInstances>
             <componentInstanceProperties>
                 <name>enableInlineEdit</name>
                 <value>false</value>
@@ -12,7 +15,7 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>filterName</name>
-                <value>View20170923a</value>
+                <value>All</value>
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>hideActionBar</name>
@@ -20,16 +23,20 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>pageSize</name>
-                <value>10</value>
+                <value>30</value>
             </componentInstanceProperties>
             <componentName>flexipage:filterListCard</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
-                <name>context</name>
-                <value>NEWS</value>
+                <name>entityNames</name>
+                <value>[&quot;Model__c&quot;,&quot;Inspection__c&quot;,&quot;Equipment__c&quot;]</value>
             </componentInstanceProperties>
-            <componentName>forceChatter:exposedFeed</componentName>
+            <componentInstanceProperties>
+                <name>maxRecords</name>
+                <value>30</value>
+            </componentInstanceProperties>
+            <componentName>flexipage:recentItems</componentName>
         </componentInstances>
         <mode>Replace</mode>
         <name>top</name>
@@ -47,18 +54,11 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>home:eventContainer</componentName>
-        </componentInstances>
-        <componentInstances>
             <componentInstanceProperties>
-                <name>entityNames</name>
-                <value>[&quot;Model__c&quot;,&quot;Inspection__c&quot;,&quot;Equipment__c&quot;]</value>
+                <name>context</name>
+                <value>NEWS</value>
             </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>maxRecords</name>
-                <value>30</value>
-            </componentInstanceProperties>
-            <componentName>flexipage:recentItems</componentName>
+            <componentName>forceChatter:exposedFeed</componentName>
         </componentInstances>
         <mode>Replace</mode>
         <name>sidebar</name>
