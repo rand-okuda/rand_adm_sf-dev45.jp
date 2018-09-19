@@ -114,6 +114,7 @@
         <members>PricebookEntry</members>
         <members>Product2</members>
         <members>QuickText</members>
+        <members>RecordAction</members>
         <members>Scorecard</members>
         <members>ScorecardAssociation</members>
         <members>ScorecardMetric</members>
@@ -152,6 +153,11 @@
     <types>
         <members>*</members>
         <name>DataCategoryGroup</name>
+    </types>
+    <types>
+        <members>Logo</members>
+        <members>Logo/RAND.jpg</members>
+        <name>Document</name>
     </types>
     <types>
         <members>unfiled$public</members>
@@ -225,6 +231,8 @@
     <types>
         <members>ApexDevNet</members>
         <members>Einstein_Platform</members>
+        <members>GoogleChart</members>
+        <members>ZXing</members>
         <name>RemoteSiteSetting</name>
     </types>
     <types>

@@ -1699,7 +1699,7 @@
         <layout>Equipment__c-点検施設 Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Event-Event Layout</layout>
+        <layout>Event-Event Layout QRMobile</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>FeedItem-フィード項目レイアウト</layout>
